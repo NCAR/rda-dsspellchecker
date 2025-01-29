@@ -10,7 +10,7 @@ The project was developed mainly for the purpose of validating the text fields o
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install spellchecker.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install dsspellchecker.
 
 From within your python environment:
 1. run `pip install git+https://github.com/NCAR/rda-dsspellchecker`
@@ -19,7 +19,7 @@ From within your python environment:
 ## Usage
 
 ```python
-from spellchecker import SpellChecker
+from dsspellchecker import SpellChecker
 
 spell_checker = SpellChecker()
 print(spell_checker.initialized)
