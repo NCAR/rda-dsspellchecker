@@ -80,13 +80,10 @@ def build_db(args):
             cursor.execute("insert into " + e + " (" + ", ".join(db_config[e]['columns']) + ") values (" + ", ".join("?" for word in words) + ") on conflict do nothing", tuple(word.strip() for word in words))
             conn.commit()
 
-        f.close()
-
     conn.close()
     print("... done.")
 
 
-#def add_words(words, table, **kwargs):
 def add_words(args):
     util_name = args[-1]
     del args[-1]
@@ -201,7 +198,7 @@ def add_acronym(args):
     conn.close()
 
 
-def dump_db(args):
+def dump_db(args, **kwargs):
     util_name = args[-1]
     del args[-1]
     try:
@@ -217,11 +214,25 @@ def dump_db(args):
 
         print((
             "usage: {} {} [--dir=<path>]".format(util_name, func_name) + "\n"
+            "\n"
+            "This command dumps the current spellchecker database into the component word\n"
+            "lists in the distribution directory, so that if the database is rebuilt, it\n"
+            " will use the most up-to-date lists. Include an optional path to create the\n"
+            " lists elsewhere so that if you have to reinstall the package, you can build\n"
+            " the database from custom word lists instead of distribution word lists.\n"
+            "\n"
+            "options:\n"
+            "--dir=<path>   additional path for the dumped word lists\n"
         ))
         sys.exit(1)
 
+    verbose = False if 'quiet' in kwargs and kwargs['quiet'] else True
     dict_dir = os.path.join(os.path.dirname(__file__), "dictionary")
-    dump_dir = opts[0][1] if 'opts' in locals() else dict_dir
+    if 'opts' in locals() and opts[0][0] == "--dir":
+        custom_dir = opts[0][1]
+        if not os.path.exists(custom_dir):
+            raise FileNotFoundError("the specified directory does not exist")
+
     db_name = os.path.join(dict_dir, "valids.db")
     conn = sqlite3.connect(os.path.join(dict_dir, "valids.db"))
     cursor = conn.cursor()
@@ -231,19 +242,22 @@ def dump_db(args):
         if len(res) == 0:
             raise sqlite3.Error("table '{}' is empty".format(e))
 
-        if not os.path.exists(dump_dir):
-            os.makedirs(dump_dir)
-
         fname = e + ".lst"
-        print("Writing  {} entries to '{}' ...".format(str(len(res)), fname))
-        with open(os.path.join(dump_dir, fname), "w") as f:
+        if verbose:
+            print("Writing  {} entries to '{}' ...".format(str(len(res)), fname))
+
+        with open(os.path.join(dict_dir, fname), "w") as f:
             for l in res:
                 f.write(" | ".join(x for x in l) + "\n")
 
-        f.close()
+        if 'custom_dir' in locals():
+            with open(os.path.join(custom_dir, fname), "w") as f:
+                for l in res:
+                    f.write(" | ".join(x for x in l) + "\n")
 
     conn.close()
-    print("... done.")
+    if verbose:
+        print("... done.")
 
 
 def dsspellchecker_manage():
