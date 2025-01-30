@@ -45,7 +45,7 @@ print(spell_checker.misspelled_words)
 
 The dictionary is divided up into several word lists. Some of this is functional (affects the way the spellchecker does validation) and some of this is simply organizational (grouping of like words). The various lists and their functions follow:
 
-**general.lst:** list of "everyday" words and the spellchecker will validate words case-insensitively against these entries (e.g. 'world', 'World', and 'wORld' will all validate as being spelled correctly)
+**general.lst:** list of "everyday" words; the spellchecker will validate words case-insensitively against these entries (e.g. 'world', 'World', and 'wORld' will all validate as being spelled correctly)
 
 **acronyms.lst:** list of acronyms and their full descriptions; the spellchecker will validate words exactly against the acronyms and the words in the full descriptions (e.g. 'NCAR' will validate, but 'nCAR' will not; from NCAR's description, the words 'National', 'Center', 'for', 'Atmospheric', 'Research' will also validate)
 
@@ -55,10 +55,20 @@ The dictionary is divided up into several word lists. Some of this is functional
 
 **exact_others.lst:** list of other exact matches that don't fit into acronyms, names, or places; the spellchecker will validate words exactly against these entries
 
-**unit_abbrevs.lst:**
+**unit_abbrevs.lst:** list of unit abbreviations that will validate IF they are preceeded by a number; e.g. "500 mbar" will validate, but "mbar" by itself will not
 
-**file_exts.lst:**
+**file_exts.lst:** list of known file extensions, so that filenames will validate; e.g. "global_tmp.nc" will validate, but "global_tmp.nc7" will not
 
-**non_english.lst:**
+**non_english.lst:** list of non-English words; the spellchecker will validate words exactly against these entries
 
 ## Scripts
+
+**dsspellchecker_manage**
+
+Run `dsspellchecker_manage` with no arguments to get usage information
+
+- sub-commands
+    - add_words: add words to the spellchecker database
+    - add_acronym: add an acronym to the spellchecker database
+    - build_db: build the spellchecker database from the word lists
+    - dump_db: dump the current spellchecker database to the component word lists
