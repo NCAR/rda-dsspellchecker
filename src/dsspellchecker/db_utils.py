@@ -51,19 +51,42 @@ db_config = {
 
 
 def build_db(args):
-    if args[0] == "-h":
+    util_name = args[-1]
+    del args[-1]
+    try:
+        if len(args) > 0:
+            if args[0] == "-h":
+                raise getopt.GetoptError("")
+
+            opts, args = getopt.getopt(args, "", ["dir="])
+    except getopt.GetoptError as err:
         func_name = inspect.currentframe().f_code.co_name
+        if len(str(err)) > 0:
+            print("Error: {}\n".format(err))
+
         print((
-            "usage: {} {}".format(args[-1], func_name) + "\n"
+            "usage: {} {} [--dir=<path>]".format(util_name, func_name) + "\n"
             "\n"
-            "This command builds the spellchecker database from the word lists. It doesn't\n"
-            "take any arguments. Use this command after installing the spellchecker to\n"
-            "initialize the database.\n"
+            "This command builds/rebuilds the spellchecker database from the word lists. By\n"
+            "default, the lists in the distribution directory are used to build/rebuild the\n"
+            "database, but you can specify an alternate path that contains the word lists\n"
+            "that you want to build from.\n"
+            "\n"
+            "options:\n"
+            "--dir=<path>   additional path for the dumped word lists\n"
         ))
         sys.exit(1)
 
     print("Building database from lists of valids ...")
     dict_dir = os.path.join(os.path.dirname(__file__), "dictionary")
+    if 'opts' in locals() and opts[0][0] == "--dir":
+        list_dir = opts[0][1]
+        if not os.path.exists(list_dir):
+            raise FileNotFoundError("the specified directory does not exist")
+
+    else:
+        list_dir = dict_dir
+
     db_name = os.path.join(dict_dir, "valids.db")
     if os.path.exists(db_name):
         os.unlink(db_name)
@@ -72,7 +95,7 @@ def build_db(args):
     cursor = conn.cursor()
     for e in db_config:
         cursor.execute("create table if not exists " + e + " (" + ", ".join("{} text nocollate nocase".format(t) for t in db_config[e]['columns']) + ", primary key (" + db_config[e]['primary_key'] + "))")
-        with open(os.path.join(dict_dir, e + ".lst")) as f:
+        with open(os.path.join(list_dir, e + ".lst")) as f:
             lines = f.readlines()
 
         for line in lines:
