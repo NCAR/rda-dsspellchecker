@@ -66,3 +66,9 @@ The dictionary is divided up into several word lists. Some of this is functional
 **dsspellchecker_manage**
 
 Run `dsspellchecker_manage` with no arguments to get usage information
+
+- sub-commands
+    - add_words: add words to the spellchecker database
+    - add_acronym: add an acronym to the spellchecker database
+    - build_db: build the spellchecker database from the word lists
+    - dump_db: dump the current spellchecker database to the component word lists
