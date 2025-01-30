@@ -55,10 +55,14 @@ The dictionary is divided up into several word lists. Some of this is functional
 
 **exact_others.lst:** list of other exact matches that don't fit into acronyms, names, or places; the spellchecker will validate words exactly against these entries
 
-**unit_abbrevs.lst:**
+**unit_abbrevs.lst:** list of unit abbreviations that will validate IF they are preceeded by a number; e.g. "500 mbar" will validate, but "mbar" by itself will not
 
-**file_exts.lst:**
+**file_exts.lst:** list of known file extensions, so that filenames will validate; e.g. "global_tmp.nc" will validate, but "global_tmp.nc7" will not
 
-**non_english.lst:**
+**non_english.lst:** list of non-English words; the spellchecker will validate words exactly against these entries
 
 ## Scripts
+
+**dsspellchecker_manage**
+
+Run `dsspellchecker_manage` with no arguments to get usage information
