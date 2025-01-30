@@ -69,7 +69,7 @@ Run `dsspellchecker_manage` with no arguments to get usage information
 
 - sub-commands: run `dsspellchecker_manage <sub-command> -h` for help on the given sub-command
 
-    - add_words: add words to the spellchecker database
-    - add_acronym: add an acronym to the spellchecker database
-    - build_db: build the spellchecker database from the word lists
-    - dump_db: dump the current spellchecker database to the component word lists
+    - `add_words`: add words to the spellchecker database
+    - `add_acronym`: add an acronym to the spellchecker database
+    - `build_db`: build the spellchecker database from the word lists
+    - `dump_db`: dump the current spellchecker database to the component word lists
