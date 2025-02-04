@@ -11,9 +11,12 @@ def unknown(text, valids, **kwargs):
     checking_units = kwargs['units'] if 'units' in kwargs else False
     separator = kwargs['separator'] if 'separator' in kwargs else ""
     file_ext_valids = kwargs['file_ext_valids'] if 'file_ext_valids' in kwargs else None
+    do_clean = kwargs['cleanWord'] if 'cleanWord' in kwargs else True
     n = 0 if not checking_units else 1
     while n < len(words):
-        words[n] = clean_word(words[n])
+        if do_clean:
+            words[n] = clean_word(words[n])
+
         if words[n] not in misspelled_words:
             cword = words[n]
             if 'trimPlural' in kwargs and kwargs['trimPlural']:
@@ -34,6 +37,7 @@ def unknown(text, valids, **kwargs):
                                 pass
                             elif not pword.replace(".", "").isnumeric():
                                 misspelled_words.append(words[n])
+
                         else:
                             if n > 0:
                                 if len(cword) == 1 and cword.isalpha() and cword == cword.upper() and words[n-1].lower() == "station":
