@@ -97,8 +97,16 @@ class SpellChecker:
         check_text = text
         check_text = check_text.replace("\n", " ").replace("\u2010", "-").strip()
 
-        # check the text case-insensitive against the general words
-        self._misspelled_words = unknown(check_text, self._general_valids, icase=True, file_ext_valids=self._file_ext_valids)
+        # check the text directly against the exact match valids with suppressed
+        #    word cleaning
+        self._misspelled_words = unknown(check_text, self._exact_match_valids, cleanWord=False)
+
+        if len(self._misspelled_words) > 0:
+            check_text = self.new_text(check_text)
+
+            # check the text case-insensitive against the general words
+            self._misspelled_words = unknown(check_text, self._general_valids, icase=True, file_ext_valids=self._file_ext_valids)
+
         if len(self._misspelled_words) > 0:
             check_text = self.new_text(check_text)
 
