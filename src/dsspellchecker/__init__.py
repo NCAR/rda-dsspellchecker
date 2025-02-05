@@ -99,49 +99,49 @@ class SpellChecker:
 
         # check the text case-insensitive against the general words with suppressed word cleaning
         self._misspelled_words = unknown(check_text, self._general_valids, icase=True, file_ext_valids=self._file_ext_valids, cleanWord=False)
-        if len(self._misspelled_words) > 0:
+        if self._misspelled_words:
             check_text = self.new_text(check_text)
 
             # check the text directly against the exact match valids with suppressed word cleaning
             self._misspelled_words = unknown(check_text, self._exact_match_valids, cleanWord=False)
 
-        if len(self._misspelled_words) > 0:
+        if self._misspelled_words:
             check_text = self.new_text(check_text)
 
             # check the text case-insensitive against the general words
             self._misspelled_words = unknown(check_text, self._general_valids, icase=True, file_ext_valids=self._file_ext_valids)
 
-        if len(self._misspelled_words) > 0:
+        if self._misspelled_words:
             check_text = self.new_text(check_text)
 
             # check the text directly against the acronyms, trimming plurals
             self._misspelled_words = unknown(check_text, self._acronym_valids, trimPlural=True)
 
-        if len(self._misspelled_words) > 0:
+        if self._misspelled_words:
             check_text = self.new_text(check_text)
 
             # check the text directly against the exact match valids
             self._misspelled_words = unknown(check_text, self._exact_match_valids)
 
-        if len(self._misspelled_words) > 0:
+        if self._misspelled_words:
             check_text = self.new_text(check_text)
             if text.find("-") >= 0:
                 # check compound (hyphen) words in the text case-insensitive against the general words
                 self._misspelled_words = unknown(check_text, self._general_valids, separator="-", icase=True)
 
-        if len(self._misspelled_words) > 0:
+        if self._misspelled_words:
             check_text = self.new_text(check_text)
             if text.find("\u2013") >= 0:
                 # check compound (unicode En-dash) words in the text case-insensitive against the general words
                 self._misspelled_words = unknown(check_text, self._general_valids, separator="\u2013", icase=True)
 
-        if len(self._misspelled_words) > 0:
+        if self._misspelled_words:
             check_text = self.new_text(check_text)
             if text.find("/") >= 0:
                 # check compound (slash) words in the text case-insensitive against the general words
                 self._misspelled_words = unknown(check_text, self._general_valids, separator="/", icase=True)
 
-        if len(self._misspelled_words) > 0:
+        if self._misspelled_words:
             check_text = self.new_text(check_text)
             separator = ""
             if text.find("/") > 0:
@@ -155,22 +155,22 @@ class SpellChecker:
                 # check compound words in the text directly against the acronyms
                 self._misspelled_words = unknown(check_text, self._acronym_valids, separator=separator)
 
-        if len(self._misspelled_words) > 0:
+        if self._misspelled_words:
             check_text = text
             check_text = check_text.replace("\n", " ").strip()
             check_text = self.new_text(check_text, includePrevious=True)
             # check text directly against the unit abbreviations valids
             self._misspelled_words = unknown(check_text, self._unit_abbrevs_valids, units=True)
 
-        if len(self._misspelled_words) > 0:
+        if self._misspelled_words:
             check_text = self.new_text(check_text)
             if text.find("_") >= 0:
                 # check snake_case words in the text case-insensitive against the general words
                 self._misspelled_words = unknown(check_text, self._general_valids, separator="_", icase=True)
 
         # ignore 'unknown' acronyms
-        if len(self._misspelled_words) > 0:
-            for x in range(0, len(self._misspelled_words)):
+        if self._misspelled_words:
+            for x in range(0, self._misspelled_words.__len__()):
                 word = strip_plural(self._misspelled_words[x].replace(".", ""))
                 if word.isalnum() and word == word.upper():
                     self._misspelled_words[x] = ""
@@ -189,7 +189,7 @@ class SpellChecker:
                 midx = 0
 
             for n in range(1, len(words)):
-                if midx == len(self._misspelled_words):
+                if midx == self._misspelled_words.__len__():
                     break
 
                 stripped, pword = strip_punctuation(words[n])
