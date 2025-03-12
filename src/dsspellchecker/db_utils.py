@@ -350,10 +350,8 @@ def is_valid_word(word, lstname, cursor):
 
             vars = [word]
 
-        #conn.set_trace_callback(print)
         cursor.execute(q, tuple(vars))
         res = cursor.fetchall()
-        #print(len(res))
         if len(res) > 0:
             return True
 
