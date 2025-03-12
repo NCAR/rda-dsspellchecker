@@ -22,11 +22,11 @@ From within your python environment:
 from dsspellchecker import SpellChecker
 
 spell_checker = SpellChecker()
-print(spell_checker.initialized)
+print(spell_checker.ready)
 # True if the spellchecker is ready, False if error
 
 print(spell_checker.error)
-# '' for no error (initialized == True), otherwise some message
+# '' for no error (ready == True), otherwise some message
 
 # check some text
 spell_checker.check("This dataset contains data from a reanalysis model. Parameters include "
