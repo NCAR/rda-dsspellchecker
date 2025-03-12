@@ -20,6 +20,7 @@ class SpellChecker:
             self._conn = sqlite3.connect(
                     os.path.join(os.path.dirname(__file__),
                                  "dictionary/valids.db"))
+            #self._conn.set_trace_callback(print)
             self._cursor = self._conn.cursor()
             self._ready = True
             for key in db_config:
@@ -62,42 +63,43 @@ class SpellChecker:
                                     "\u2010", "-"
                                 ).strip()
 
-        # check the text case-insensitive against the general words with
-        # suppressed word cleaning
+        exact_matches = {'places', 'names', 'exact_others', 'acronyms'}
+        # check the text against the general words with no word cleaning to
+        # eliminate as many common words as possible
         self._misspelled_words = (
                 unknown(check_text, "general", self._cursor, file_exts=True,
                         cleanWord=False))
         if self._misspelled_words:
-            check_text = self.new_text(check_text)
 
             # check the text directly against the exact match valids with
-            # suppressed word cleaning
-            self._misspelled_words = (
-                   unknown(check_text, "exact_others", self._cursor,
-                           cleanWord=False))
+            # no word cleaning because cleaning removes punctuation that might
+            # be in an exact match
+            check_text = self.new_text(check_text)
+            for lstname in exact_matches:
+                if self._misspelled_words:
+                    self._misspelled_words = (
+                            unknown(check_text, lstname, self._cursor,
+                                    cleanWord=False))
+                    if self._misspelled_words:
+                        check_text = self.new_text(check_text)
 
+        # at this point, remaining words are non-cleaned words
         if self._misspelled_words:
             check_text = self.new_text(check_text)
 
-            # check the text case-insensitive against the general words
+            # check the against the general words again, now with word
+            # cleaning
             self._misspelled_words = (
                     unknown(check_text, "general", self._cursor,
                             file_exts=True))
-
-        if self._misspelled_words:
-            check_text = self.new_text(check_text)
-
-            # check the text directly against the acronyms, trimming plurals
-            self._misspelled_words = (
-                    unknown(check_text, "acronyms", self._cursor,
-                            trimPlural=True))
-
-        if self._misspelled_words:
-            check_text = self.new_text(check_text)
-
-            # check the text directly against the exact match valids
-            self._misspelled_words = (unknown(check_text, "exact_others",
-                                              self._cursor))
+            if self._misspelled_words:
+                check_text = self.new_text(check_text)
+                for lstname in exact_matches:
+                    if self._misspelled_words:
+                        self._misspelled_words = (
+                                unknown(check_text, lstname, self._cursor))
+                        if self._misspelled_words:
+                            check_text = self.new_text(check_text)
 
         if self._misspelled_words:
             check_text = self.new_text(check_text)
