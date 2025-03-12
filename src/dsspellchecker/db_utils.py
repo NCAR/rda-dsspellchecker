@@ -1,7 +1,6 @@
 import getopt
 import inspect
 import os
-import shutil
 import sqlite3
 import sys
 
@@ -9,41 +8,49 @@ import sys
 db_config = {
     'general': {
         'columns': ["word"],
+        'multi': [False],
         'primary_key': "word",
         'icase': True,
     },
     'unit_abbrevs': {
         'columns': ["word"],
+        'multi': [False],
         'primary_key': "word",
         'icase': False,
     },
     'places': {
         'columns': ["word"],
+        'multi': [False],
         'primary_key': "word",
         'icase': False,
     },
     'names': {
         'columns': ["word"],
+        'multi': [False],
         'primary_key': "word",
         'icase': False,
     },
     'exact_others': {
         'columns': ["word"],
+        'multi': [False],
         'primary_key': "word",
         'icase': False,
     },
     'non_english': {
         'columns': ["word"],
+        'multi': [False],
         'primary_key': "word",
         'icase': True,
     },
     'file_exts': {
         'columns': ["word"],
+        'multi': [False],
         'primary_key': "word",
         'icase': False,
     },
     'acronyms': {
         'columns': ["word", "description"],
+        'multi': [False, True],
         'primary_key': "word",
         'icase': False,
     },
@@ -94,13 +101,21 @@ def build_db(args):
     conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
     for e in db_config:
-        cursor.execute("create table if not exists " + e + " (" + ", ".join("{} text nocollate nocase".format(t) for t in db_config[e]['columns']) + ", primary key (" + db_config[e]['primary_key'] + "))")
+        cursor.execute(("create table if not exists " + e + " (" +
+                        ", ".join("{} text nocollate nocase".format(t) for t
+                                  in db_config[e]['columns']) +
+                        ", primary key (" + db_config[e]['primary_key'] +
+                        "))"))
         with open(os.path.join(list_dir, e + ".lst")) as f:
             lines = f.readlines()
 
         for line in lines:
             words = line.split("|")
-            cursor.execute("insert into " + e + " (" + ", ".join(db_config[e]['columns']) + ") values (" + ", ".join("?" for word in words) + ") on conflict do nothing", tuple(word.strip() for word in words))
+            cursor.execute(("insert into " + e + " (" +
+                            ", ".join(db_config[e]['columns']) +
+                            ") values (" + ", ".join("?" for word in words) +
+                            ") on conflict do nothing"),
+                           tuple(word.strip() for word in words))
             conn.commit()
 
     conn.close()
@@ -139,8 +154,7 @@ def add_words(args):
         if opt == "-t":
             table = arg
         elif opt == "-w":
-            l = arg.split()
-            words.extend(l)
+            words.extend(args.split())
 
     if 'table' not in locals():
         raise UnboundLocalError("no table was specified")
@@ -159,7 +173,8 @@ def add_words(args):
             if db_config[table]['icase']:
                 words[x] = words[x].lower()
 
-            cursor.execute("insert into " + table + " values (?)", (words[x], ))
+            cursor.execute("insert into " + table + " values (?)",
+                           (words[x], ))
 
         conn.commit()
     except sqlite3.IntegrityError:
@@ -211,7 +226,8 @@ def add_acronym(args):
         dict_dir = os.path.join(os.path.dirname(__file__), "dictionary")
         conn = sqlite3.connect(os.path.join(dict_dir, "valids.db"))
         cursor = conn.cursor()
-        cursor.execute("insert into acronyms values (?, ?)", (acronym.upper(), full_name))
+        cursor.execute(("insert into acronyms values (?, ?)"),
+                       (acronym.upper(), full_name))
         conn.commit()
     except sqlite3.IntegrityError:
         pass
@@ -260,23 +276,25 @@ def dump_db(args, **kwargs):
     conn = sqlite3.connect(os.path.join(dict_dir, "valids.db"))
     cursor = conn.cursor()
     for e in db_config:
-        cursor.execute("select " + ", ".join(db_config[e]['columns']) + " from " + e)
+        cursor.execute(("select " + ", ".join(db_config[e]['columns']) +
+                        " from " + e))
         res = cursor.fetchall()
         if len(res) == 0:
             raise sqlite3.Error("table '{}' is empty".format(e))
 
         fname = e + ".lst"
         if verbose:
-            print("Writing  {} entries to '{}' ...".format(str(len(res)), fname))
+            print("Writing  {} entries to '{}' ..."
+                  .format(str(len(res)), fname))
 
         with open(os.path.join(dict_dir, fname), "w") as f:
-            for l in res:
-                f.write(" | ".join(x for x in l) + "\n")
+            for e in res:
+                f.write(" | ".join(x for x in e) + "\n")
 
         if 'custom_dir' in locals():
             with open(os.path.join(custom_dir, fname), "w") as f:
-                for l in res:
-                    f.write(" | ".join(x for x in l) + "\n")
+                for e in res:
+                    f.write(" | ".join(x for x in e) + "\n")
 
     conn.close()
     if verbose:
@@ -310,6 +328,43 @@ def dsspellchecker_manage():
         dump_db(args[1:])
     else:
         raise ValueError("invalid command")
+
+
+def is_valid_word(word, lstname):
+    if lstname not in db_config:
+        return False
+
+    db_name = os.path.join(os.path.dirname(__file__),
+                           "dictionary", "valids.db")
+    try:
+        conn = sqlite3.connect(db_name)
+        cursor = conn.cursor()
+        for x in range(0, len(db_config[lstname]['columns'])):
+            q = ("select " + db_config[lstname]['columns'][x] + " from " +
+                 lstname + " where ")
+            if db_config[lstname]['multi'][x]:
+                q += (db_config[lstname]['columns'][x] + " glob ? or " +
+                      db_config[lstname]['columns'][x] + " glob ? or " +
+                      db_config[lstname]['columns'][x] + " glob ?")
+                vars = [word + " *", "* " + word, "* " + word + " *"]
+            else:
+                if db_config[lstname]['icase']:
+                    q += db_config[lstname]['columns'][x] + " like ?"
+                else:
+                    q += db_config[lstname]['columns'][x] + " = ?"
+
+                vars = [word]
+
+            conn.set_trace_callback(print)
+            cursor.execute(q, tuple(vars))
+            res = cursor.fetchone()
+            if res is not None:
+                return True
+
+    finally:
+        conn.close()
+
+    return False
 
 
 if __name__ == "__main__":
