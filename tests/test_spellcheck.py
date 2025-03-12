@@ -9,8 +9,7 @@ sc = SpellChecker()
 
 class TestSpellCheck(unittest.TestCase):
     def test_initialize(self):
-        self.assertTrue(sc.initialized)
-
+        self.assertTrue(sc.ready)
 
     def test_general(self):
         sc.check("Hello, world!")
@@ -20,13 +19,11 @@ class TestSpellCheck(unittest.TestCase):
         sc.check("This is a test, (and I hope it passes)!")
         self.assertEqual(sc.misspelled_words, [])
 
-
     def test_place(self):
         sc.check("I live in Tennessee.")
         self.assertEqual(sc.misspelled_words, [])
         sc.check("I live in tennessee.")
         self.assertEqual(sc.misspelled_words, ['tennessee'])
-
 
     def test_exact(self):
         sc.check("This is an e.g. test!")

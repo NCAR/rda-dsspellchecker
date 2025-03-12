@@ -6,14 +6,15 @@ from libpkg.strutils import strip_plural, strip_punctuation
 from .db_utils import is_valid_word
 
 
-def unknown(text, valids, **kwargs):
+def unknown(text, lstname, cursor, **kwargs):
     misspelled_words = []
     words = text.split()
-    icase = kwargs['icase'] if 'icase' in kwargs else False
-    checking_units = kwargs['units'] if 'units' in kwargs else False
+    checking_units = True if lstname == "unit_abbrevs" else False
     separator = kwargs['separator'] if 'separator' in kwargs else ""
-    file_ext_valids = (kwargs['file_ext_valids'] if 'file_ext_valids' in
-                       kwargs else None)
+    ikwargs = {}
+    if 'file_exts' in kwargs and kwargs['file_exts']:
+        ikwargs.update({'file_exts': True, 'cursor': cursor})
+
     do_clean = kwargs['cleanWord'] if 'cleanWord' in kwargs else True
     n = 0 if not checking_units else 1
     while n < len(words):
@@ -28,19 +29,16 @@ def unknown(text, valids, **kwargs):
         if 'trimPlural' in kwargs and kwargs['trimPlural']:
             cword = strip_plural(cword)
 
-        if ignore_word(cword, file_ext_valids):
+        if ignore_word(cword, **ikwargs):
             n += 1
             continue
 
         if cword[0:4] == "non-":
             cword = cword[4:]
 
-        if icase:
-            cword = cword.lower()
-
         if len(separator) == 0:
             if checking_units:
-                if cword in valids:
+                if is_valid_word(cword, lstname, cursor):
                     pword = words[n-1].strip() if n > 0 else "XX"
                     if pword == "et" and cword == "al":
                         pass
@@ -66,7 +64,7 @@ def unknown(text, valids, **kwargs):
                 if cword[-2:] == "'s":
                     cword = cword[:-2]
 
-                if cword not in valids:
+                if not is_valid_word(cword, lstname, cursor):
                     misspelled_words.append(words[n])
 
         else:
@@ -74,10 +72,10 @@ def unknown(text, valids, **kwargs):
             m = 0
             failed = False
             while m < len(parts):
-                if (ignore_word(parts[m], file_ext_valids) and parts[m] not in
-                        valids):
+                if (not ignore_word(parts[m], **ikwargs) and not
+                        is_valid_word(parts[m], lstname, cursor)):
                     if parts[m][-2:] == "'s":
-                        if parts[m][:-2] not in valids:
+                        if not is_valid_word(parts[m][:-2], lstname, cursor):
                             failed = True
                             break
 
@@ -94,7 +92,7 @@ def unknown(text, valids, **kwargs):
     return misspelled_words
 
 
-def ignore_word(word, file_ext_valids):
+def ignore_word(word, **kwargs):
     if len(word) == 0:
         return True
 
@@ -188,8 +186,8 @@ def ignore_word(word, file_ext_valids):
 
     # ignore file names
     idx = word.rfind(".")
-    if (idx > 0 and file_ext_valids is not None and word[idx+1:] in
-            file_ext_valids):
+    if (idx > 0 and 'file_exts' in kwargs and kwargs['file_exts'] and
+            is_valid_word(word[idx+1:], "file_exts", kwargs['cursor'])):
         return True
 
     # ignore acronyms like TS1.3B.4C
