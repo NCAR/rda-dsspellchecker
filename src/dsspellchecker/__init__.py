@@ -27,6 +27,7 @@ class SpellChecker:
                 res = self._cursor.fetchall()
                 if res[0] == 0:
                     self._ready = False
+                    self._error = "Did you build the database?"
                     break
 
         except Exception as err:
@@ -49,6 +50,11 @@ class SpellChecker:
         return self._misspelled_words
 
     def check(self, text):
+        if not self._ready:
+            self._misspelled_words = ["SpellChecker error: '" + self._error +
+                                      "'"]
+            return
+
         check_text = text
         check_text = check_text.replace(
                                     "\n", " "
