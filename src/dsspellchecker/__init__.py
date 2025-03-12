@@ -5,6 +5,7 @@ import importlib.metadata
 
 from libpkg.strutils import strip_plural, strip_punctuation
 
+from .db_utils import db_config
 from .utils import clean_word, unknown
 
 
@@ -13,63 +14,31 @@ __version__ = importlib.metadata.version(__package__ or __name__)
 
 class SpellChecker:
     def __init__(self):
-        self._general_valids = []
-        self._acronym_valids = []
-        self._exact_match_valids = []
-        self._unit_abbrevs_valids = []
-        self._file_ext_valids = []
-        self._valids = {
-            'general': [
-                {'column': "word", 'set': self._general_valids},
-            ],
-            'non_english': [
-                {'column': "word", 'set': self._general_valids},
-            ],
-            'acronyms': [
-                {'column': "word", 'set': self._acronym_valids},
-                {'column': "description", 'set': self._exact_match_valids},
-            ],
-            'places': [
-                {'column': "word", 'set': self._exact_match_valids},
-            ],
-            'names': [
-                {'column': "word", 'set': self._exact_match_valids},
-            ],
-            'exact_others': [
-                {'column': "word", 'set': self._exact_match_valids},
-            ],
-            'unit_abbrevs': [
-                {'column': "word", 'set': self._unit_abbrevs_valids},
-            ],
-            'file_exts': [
-                {'column': "word", 'set': self._file_ext_valids},
-            ],
-        }
         self._misspelled_words = []
         self._error = ""
         try:
-            conn = sqlite3.connect(os.path.join(os.path.dirname(__file__),
-                                   "dictionary/valids.db"))
-            cursor = conn.cursor()
-            for key in self._valids:
-                for e in self._valids[key]:
-                    e['set'].extend(self.fill_valids(cursor, key, e['column']))
+            self._conn = sqlite3.connect(
+                    os.path.join(os.path.dirname(__file__),
+                                 "dictionary/valids.db"))
+            self._cursor = self._conn.cursor()
+            self._ready = True
+            for key in db_config:
+                self._cursor.execute("select count(*) from " + key)
+                res = self._cursor.fetchall()
+                if res[0] == 0:
+                    self._ready = False
+                    break
 
-            self._initialized = True
         except Exception as err:
-            self._initialized = False
+            self._ready = False
             self._error = err
 
     def __del__(self):
-        del self._general_valids
-        del self._acronym_valids
-        del self._exact_match_valids
-        del self._unit_abbrevs_valids
-        del self._file_ext_valids
+        self._conn.close()
 
     @property
-    def initialized(self):
-        return self._initialized
+    def ready(self):
+        return self._ready
 
     @property
     def error(self):
@@ -78,18 +47,6 @@ class SpellChecker:
     @property
     def misspelled_words(self):
         return self._misspelled_words
-
-    def fill_valids(self, cursor, table, column):
-        """
-        Puts the dictionary in memory.
-        """
-        try:
-            cursor.execute("select " + column + " from " + table)
-            res = cursor.fetchall()
-            return [e[0] for e in res]
-        except Exception as err:
-            raise Exception("error filling valids table '{}': '{}'"
-                            .format(table, err))
 
     def check(self, text):
         check_text = text
@@ -102,8 +59,7 @@ class SpellChecker:
         # check the text case-insensitive against the general words with
         # suppressed word cleaning
         self._misspelled_words = (
-                unknown(check_text, self._general_valids, icase=True,
-                        file_ext_valids=self._file_ext_valids,
+                unknown(check_text, "general", self._cursor, file_exts=True,
                         cleanWord=False))
         if self._misspelled_words:
             check_text = self.new_text(check_text)
@@ -111,7 +67,7 @@ class SpellChecker:
             # check the text directly against the exact match valids with
             # suppressed word cleaning
             self._misspelled_words = (
-                   unknown(check_text, self._exact_match_valids,
+                   unknown(check_text, "exact_others", self._cursor,
                            cleanWord=False))
 
         if self._misspelled_words:
@@ -119,22 +75,23 @@ class SpellChecker:
 
             # check the text case-insensitive against the general words
             self._misspelled_words = (
-                    unknown(check_text, self._general_valids, icase=True,
-                            file_ext_valids=self._file_ext_valids))
+                    unknown(check_text, "general", self._cursor,
+                            file_exts=True))
 
         if self._misspelled_words:
             check_text = self.new_text(check_text)
 
             # check the text directly against the acronyms, trimming plurals
             self._misspelled_words = (
-                    unknown(check_text, self._acronym_valids, trimPlural=True))
+                    unknown(check_text, "acronyms", self._cursor,
+                            trimPlural=True))
 
         if self._misspelled_words:
             check_text = self.new_text(check_text)
 
             # check the text directly against the exact match valids
-            self._misspelled_words = (
-                    unknown(check_text, self._exact_match_valids))
+            self._misspelled_words = (unknown(check_text, "exact_others",
+                                              self._cursor))
 
         if self._misspelled_words:
             check_text = self.new_text(check_text)
@@ -142,8 +99,8 @@ class SpellChecker:
                 # check compound (hyphen) words in the text case-insensitive
                 # against the general words
                 self._misspelled_words = (
-                        unknown(check_text, self._general_valids,
-                                separator="-", icase=True))
+                        unknown(check_text, "general", self._cursor,
+                                separator="-"))
 
         if self._misspelled_words:
             check_text = self.new_text(check_text)
@@ -151,8 +108,8 @@ class SpellChecker:
                 # check compound (unicode En-dash) words in the text
                 # case-insensitive against the general words
                 self._misspelled_words = (
-                        unknown(check_text, self._general_valids,
-                                separator="\u2013", icase=True))
+                        unknown(check_text, "general", self._cursor,
+                                separator="\u2013"))
 
         if self._misspelled_words:
             check_text = self.new_text(check_text)
@@ -160,8 +117,8 @@ class SpellChecker:
                 # check compound (slash) words in the text case-insensitive
                 # against the general words
                 self._misspelled_words = (
-                        unknown(check_text, self._general_valids,
-                                separator="/", icase=True))
+                        unknown(check_text, "general", self._cursor,
+                                separator="/"))
 
         if self._misspelled_words:
             check_text = self.new_text(check_text)
@@ -177,7 +134,7 @@ class SpellChecker:
                 # check compound words in the text directly against the
                 # acronyms
                 self._misspelled_words = (
-                        unknown(check_text, self._acronym_valids,
+                        unknown(check_text, "acronyms", self._cursor,
                                 separator=separator))
 
         if self._misspelled_words:
@@ -185,9 +142,8 @@ class SpellChecker:
             check_text = check_text.replace("\n", " ").strip()
             check_text = self.new_text(check_text, includePrevious=True)
             # check text directly against the unit abbreviations valids
-            self._misspelled_words = (
-                    unknown(check_text, self._unit_abbrevs_valids,
-                            units=True))
+            self._misspelled_words = (unknown(check_text, "unit_abbrevs",
+                                              self._cursor))
 
         if self._misspelled_words:
             check_text = self.new_text(check_text)
@@ -195,8 +151,8 @@ class SpellChecker:
                 # check snake_case words in the text case-insensitive against
                 # the general words
                 self._misspelled_words = (
-                        unknown(check_text, self._general_valids,
-                                separator="_", icase=True))
+                        unknown(check_text, "general", self._cursor,
+                                separator="_"))
 
         # ignore 'unknown' acronyms
         if self._misspelled_words:
@@ -205,8 +161,8 @@ class SpellChecker:
                 if word.isalnum() and word == word.upper():
                     self._misspelled_words[x] = ""
 
-            self._misspelled_words = [(e for e in self._misspelled_words if
-                                      len(e) > 0)]
+            self._misspelled_words = [e for e in self._misspelled_words if
+                                      len(e) > 0]
 
     def new_text(self, text, **kwargs):
         """

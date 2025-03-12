@@ -330,39 +330,32 @@ def dsspellchecker_manage():
         raise ValueError("invalid command")
 
 
-def is_valid_word(word, lstname):
+def is_valid_word(word, lstname, cursor):
     if lstname not in db_config:
-        return False
+        raise ValueError("invalid dictionary list name")
 
-    db_name = os.path.join(os.path.dirname(__file__),
-                           "dictionary", "valids.db")
-    try:
-        conn = sqlite3.connect(db_name)
-        cursor = conn.cursor()
-        for x in range(0, len(db_config[lstname]['columns'])):
-            q = ("select " + db_config[lstname]['columns'][x] + " from " +
-                 lstname + " where ")
-            if db_config[lstname]['multi'][x]:
-                q += (db_config[lstname]['columns'][x] + " glob ? or " +
-                      db_config[lstname]['columns'][x] + " glob ? or " +
-                      db_config[lstname]['columns'][x] + " glob ?")
-                vars = [word + " *", "* " + word, "* " + word + " *"]
+    for x in range(0, len(db_config[lstname]['columns'])):
+        q = ("select " + db_config[lstname]['columns'][x] + " from " + lstname
+             + " where ")
+        if db_config[lstname]['multi'][x]:
+            q += (db_config[lstname]['columns'][x] + " glob ? or " +
+                  db_config[lstname]['columns'][x] + " glob ? or " +
+                  db_config[lstname]['columns'][x] + " glob ?")
+            vars = [word + " *", "* " + word, "* " + word + " *"]
+        else:
+            if db_config[lstname]['icase']:
+                q += db_config[lstname]['columns'][x] + " like ?"
             else:
-                if db_config[lstname]['icase']:
-                    q += db_config[lstname]['columns'][x] + " like ?"
-                else:
-                    q += db_config[lstname]['columns'][x] + " = ?"
+                q += db_config[lstname]['columns'][x] + " = ?"
 
-                vars = [word]
+            vars = [word]
 
-            conn.set_trace_callback(print)
-            cursor.execute(q, tuple(vars))
-            res = cursor.fetchone()
-            if res is not None:
-                return True
-
-    finally:
-        conn.close()
+        #conn.set_trace_callback(print)
+        cursor.execute(q, tuple(vars))
+        res = cursor.fetchall()
+        #print(len(res))
+        if len(res) > 0:
+            return True
 
     return False
 
