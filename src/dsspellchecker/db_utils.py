@@ -154,7 +154,7 @@ def add_words(args):
         if opt == "-t":
             table = arg
         elif opt == "-w":
-            words.extend(args.split())
+            words.extend(arg.split())
 
     if 'table' not in locals():
         raise UnboundLocalError("no table was specified")
@@ -168,6 +168,7 @@ def add_words(args):
     try:
         dict_dir = os.path.join(os.path.dirname(__file__), "dictionary")
         conn = sqlite3.connect(os.path.join(dict_dir, "valids.db"))
+        #conn.set_trace_callback(print)
         cursor = conn.cursor()
         for x in range(0, len(words)):
             if db_config[table]['icase']:
