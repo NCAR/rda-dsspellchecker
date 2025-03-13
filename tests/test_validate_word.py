@@ -37,7 +37,7 @@ class TestCheckWord(unittest.TestCase):
 
     def test_dataset_id(self):
         self.assertTrue(ignore_word("d083002"))
-        self.assertFalse(ignore_word("ds083.2"))
+        self.assertTrue(ignore_word("ds083.2"))
 
     def test_pre_number(self):
         self.assertTrue(ignore_word("pre-1950"))

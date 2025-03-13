@@ -42,6 +42,7 @@ def unknown(text, lstname, cursor, **kwargs):
             if checking_units:
                 if is_valid_word(cword, lstname, cursor):
                     pword = words[n-1].strip() if n > 0 else "XX"
+                    pword = clean_word(pword)
                     if pword == "et" and cword == "al":
                         pass
                     elif not pword.replace(".", "").isnumeric():

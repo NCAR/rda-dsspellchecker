@@ -33,7 +33,7 @@ class SpellChecker:
 
         except Exception as err:
             self._ready = False
-            self._error = err
+            self._error = str(err)
 
     def __del__(self):
         self._conn.close()
