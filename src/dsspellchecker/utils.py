@@ -20,6 +20,8 @@ def unknown(text, lstname, cursor, **kwargs):
     while n < len(words):
         if do_clean:
             words[n] = clean_word(words[n])
+        else:
+            words[n] = trim_front(words[n])
 
         if words[n] in misspelled_words:
             n += 1
@@ -97,7 +99,7 @@ def ignore_word(word, **kwargs):
         return True
 
     # ignore numbers
-    if len(word) >= 2 and word[0] == '#' and word[1:].isnumeric():
+    if len(word) > 1 and word[0] == '#' and word[1:].isnumeric():
         return True
 
     # ignore integers, floats and currency values
@@ -119,36 +121,45 @@ def ignore_word(word, **kwargs):
         return True
 
     # ignore e.g. 1900s
-    if word[-1] == "s" and word[:-1].isnumeric():
+    if len(word) > 0 and word[-1] == "s" and word[:-1].isnumeric():
         return True
 
     # ignore ordinal numbers
-    if word[-2:] == "st" and word[:-2].isnumeric() and word[-3] == '1':
+    if (len(word) > 2 and word[-2:] == "st" and word[:-2].isnumeric() and
+            word[-3] == '1'):
         return True
 
-    if word[-2:] == "nd" and word[:-2].isnumeric() and word[-3] == '2':
+    if (len(word) > 2 and word[-2:] == "nd" and word[:-2].isnumeric() and
+            word[-3] == '2'):
         return True
 
-    if word[-2:] == "rd" and word[:-2].isnumeric() and word[-3] == '3':
+    if (len(word) > 2 and word[-2:] == "rd" and word[:-2].isnumeric() and
+            word[-3] == '3'):
         return True
 
-    if (word[-2:] == "th" and word[:-2].isnumeric() and word[-3] in
-            ('0', '4', '5', '6', '7', '8', '9')):
+    if (len(word) > 2 and word[-2:] == "th" and word[:-2].isnumeric() and
+            word[-3] in ('0', '4', '5', '6', '7', '8', '9')):
         return True
 
     # ignore NG-GDEX dataset IDs
     if len(word) == 7 and word[0] == 'd' and word[1:].isnumeric():
         return True
 
+    # ignore legacy dataset IDs
+    if (len(word) == 7 and word[0:2] == "ds" and word[5] == '.' and
+            word[2:].replace(".", "").isnumeric()):
+        return True
+
     # ignore e.g. pre-1950
-    if word[0:4] == "pre-" and word[4:].isnumeric():
+    if len(word) > 4 and word[0:4] == "pre-" and word[4:].isnumeric():
         return True
 
     # ignore version numbers e.g. v2.0, 0.x, 1a
-    if word[0] == 'v' and word[1:].replace(".", "").isnumeric():
+    if (len(word) > 1 and word[0] == 'v' and
+            word[1:].replace(".", "").isnumeric()):
         return True
 
-    if word[-2:] == ".x" and word[:-2].isnumeric():
+    if len(word) > 2 and word[-2:] == ".x" and word[:-2].isnumeric():
         return True
 
     rexp = re.compile("^[0-9]{1,}[a-zA-Z]{1,}$")
@@ -277,5 +288,12 @@ def clean_word(word):
 
     if cleaned_word:
         word = clean_word(word)
+
+    return word
+
+
+def trim_front(word):
+    while len(word) > 0 and word[0] in ('(', '[', '{', '"', '\'', '`'):
+        word = word[1:]
 
     return word
