@@ -20,6 +20,9 @@ class TestSpellCheck(unittest.TestCase):
         self.assertEqual(sc.misspelled_words, [])
         sc.check("This dataset covers 1850 - 2010.")
         self.assertEqual(sc.misspelled_words, [])
+        sc.check(("This dataset contains temperature; a different dataset "
+                  "contains winds"))
+        self.assertEqual(sc.misspelled_words, [])
 
     def test_place(self):
         sc.check("I live in Tennessee.")
@@ -38,7 +41,8 @@ class TestSpellCheck(unittest.TestCase):
         self.assertEqual(sc.misspelled_words, ["i.e"])
         sc.check("This is a test (i.e. a check)!")
         self.assertEqual(sc.misspelled_words, [])
-        sc.check("This dataset contains numerous parameters (e.g., temperature, pressure, etc.).")
+        sc.check(("This dataset contains numerous parameters (e.g., "
+                  "temperature, pressure, etc.)."))
         self.assertEqual(sc.misspelled_words, [])
 
     def test_units(self):
