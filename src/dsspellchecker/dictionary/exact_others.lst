@@ -86,6 +86,7 @@ IPSL-CM6A-LR
 IR-based
 JPL-Oceans-8902
 JRA-3Q-COBE
+Jupyter
 Kelvin
 k-fold
 Ku-2000
@@ -127,6 +128,7 @@ OldWeather3
 OldWeather.org
 past2k
 pb2nc
+PelicanFS
 PFT-level
 pH
 piControl
