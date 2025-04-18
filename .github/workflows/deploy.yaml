@@ -1,0 +1,14 @@
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - "main"
+    paths:
+      - "dsspellchecker/**"
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger deployment
+        run: curl -s -f -d "host=rda-web-prod01.ucar.edu&build_command=/usr/local/decs/bin/dsspellchecker_deploy" "https://rda.ucar.edu/cgi-bin/cicd"
