@@ -54,6 +54,9 @@ e.g.
 e.g.,
 egrr
 EOLE
+ERA5_850hpawinds
+ERA5_hourlyIVT
+ERA5_IWV
 facto
 GCM/Mixed-layer
 Geo
@@ -161,6 +164,7 @@ Seasat
 SeaWinds
 Shields/Kiehl
 sigma-t
+slvsubset
 Soc.
 SPHEREPACK
 SSP1-2.6
@@ -179,11 +183,13 @@ TerrainBase
 t_mean
 Tonga-Hunga
 Tonga–Hunga
+u850
 u-
 UADB-TRH
 UADB-Wind
 u-component
 USArray
+v850
 v-
 v-component
 Vol.
