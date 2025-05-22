@@ -105,6 +105,8 @@ class TestCheckWord(unittest.TestCase):
 
     def test_ark(self):
         self.assertTrue(ignore_word("(ark:/12345/x5)"))
+        self.assertTrue(ignore_word("ark:/12345/x5)"))
+        self.assertTrue(ignore_word("ark:/12345/x5"))
 
 
 if __name__ == "__main__":
