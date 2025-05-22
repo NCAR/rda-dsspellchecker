@@ -168,31 +168,31 @@ def ignore_word(word, **kwargs):
         return True
 
     # ignore NCAR Technical notes
-    rexp = re.compile("^NCAR/TN-([0-9]){1,}\+STR$")
+    rexp = re.compile(r"^NCAR/TN-([0-9]){1,}\+STR$")
     if rexp.match(word):
         return True
 
     # ignore itemizations
-    rexp = re.compile("^[a-zA-Z][\.)]$")
+    rexp = re.compile(r"^[a-zA-Z][\.)]$")
     if rexp.match(word):
         return True
 
     # ignore references
-    rexp = re.compile("^\([a-zA-Z0-9]{1,3}\)$")
+    rexp = re.compile(r"^\([a-zA-Z0-9]{1,3}\)$")
     if rexp.match(word):
         return True
 
-    rexp = re.compile("^\([ivx]{1,7}\)$")
+    rexp = re.compile(r"^\([ivx]{1,7}\)$")
     if rexp.match(word):
         return True
 
     # ignore email addresses
-    rexp = re.compile("^(.){1,}@((.){1,}\.){1,}(.){2,}$")
+    rexp = re.compile(r"^(.){1,}@((.){1,}\.){1,}(.){2,}$")
     if rexp.match(word):
         return True
 
     # ignore file extensions
-    rexp = re.compile("^\.([a-zA-Z0-9]){1,10}$")
+    rexp = re.compile(r"^\.([a-zA-Z0-9]){1,10}$")
     if rexp.match(word):
         return True
 
@@ -208,26 +208,26 @@ def ignore_word(word, **kwargs):
     #    return True
 
     # ignore URLs
-    rexp = re.compile("^\[{0,1}https{0,1}://")
+    rexp = re.compile(r"^\[{0,1}https{0,1}://")
     if rexp.match(word):
         return True
 
-    rexp = re.compile("^\[{0,1}ftp://")
+    rexp = re.compile(r"^\[{0,1}ftp://")
     if rexp.match(word):
         return True
 
-    rexp = re.compile("^\[{0,1}mailto:")
+    rexp = re.compile(r"^\[{0,1}mailto:")
     if rexp.match(word):
         return True
 
     # ignore DOIs
-    rexp = re.compile("^10\.\d{4,}/.{1,}$")
+    rexp = re.compile(r"^10\.\d{4,}/.{1,}$")
     if rexp.match(word):
         return True
 
     # ignore references to ARKs
-    rexp = re.compile("^\(ark:/(\d{5}|\d{9})/(.){2,}\)$")
-    if rexp.match(word)
+    rexp = re.compile(r"^\(ark:/(\d{5}|\d{9})/(.){2,}\)$")
+    if rexp.match(word):
         return True
 
     return False
@@ -238,7 +238,7 @@ def clean_word(word):
         return ""
 
     # strip html entities
-    entity = re.compile("&\S{1,};")
+    entity = re.compile(r"&\S{1,};")
     m = entity.findall(word)
     for e in m:
         word = word.replace(e, "")
@@ -269,7 +269,7 @@ def clean_word(word):
 
         cleaned_word = True
 
-    rexp = re.compile("\(s\)$")
+    rexp = re.compile(r"\(s\)$")
     if word[-1] == ")" and not rexp.search(word):
         word = word[:-1]
         if len(word) == 0:
