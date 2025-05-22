@@ -21,6 +21,15 @@ def unknown(text, lstname, cursor, **kwargs):
         if do_clean:
             words[n] = clean_word(words[n])
         else:
+            # ignore words in double quotes
+            if words[n][0] == '"':
+                end = words[n].rfind('"')
+                if end > 0:
+                    stripped, sword = strip_punctuation(words[n])
+                    if stripped and sword == words[n][1:end]:
+                        n += 1
+                        continue
+
             words[n] = trim_front(words[n])
 
         if words[n] in misspelled_words:
