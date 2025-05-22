@@ -225,6 +225,11 @@ def ignore_word(word, **kwargs):
     if rexp.match(word):
         return True
 
+    # ignore references to ARKs
+    rexp = re.compile("^\(ark:/(\d{5}|\d{9})/(.){2,}\)$")
+    if rexp.match(word)
+        return True
+
     return False
 
 
