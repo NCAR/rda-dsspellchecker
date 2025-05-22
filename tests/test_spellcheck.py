@@ -49,6 +49,12 @@ class TestSpellCheck(unittest.TestCase):
         sc.check("This dataset contains 10 m winds at high (4 km) resolution.")
         self.assertEqual(sc.misspelled_words, [])
 
+    def test_quoted(self):
+        sc.check("This is a test of quotedgarbage.")
+        self.assertEqual(sc.misspelled_words, ["quotedgarbage"])
+        sc.check("This is a test of \"quotedgarbage\".")
+        self.assertEqual(sc.misspelled_words, [])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
