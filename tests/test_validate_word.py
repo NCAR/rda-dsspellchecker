@@ -103,6 +103,9 @@ class TestCheckWord(unittest.TestCase):
         self.assertFalse(ignore_word("Tennessee"))
         self.assertFalse(ignore_word("dataset"))
 
+    def test_ark(self):
+        self.assertTrue(ignore_word("(ark:/12345/x5)"))
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
