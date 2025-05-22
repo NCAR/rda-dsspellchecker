@@ -1,10 +1,14 @@
 +/-
 &
 0.4-mb
+0_AEQ
+180_VEQ
 1xCO2
 20CRv3-WRF
+270_SSOL
 2xCO2
 4-km
+90_WSOL
 All-Hist
 A&M
 Amer.
@@ -52,6 +56,7 @@ Dr.
 ecmf
 e.g.
 e.g.,
+ECC_0
 egrr
 EOLE
 ERA5_850hpawinds
@@ -74,7 +79,9 @@ HadISST1
 HadISST.2
 Hadley-OI
 HadSST2
+half_CO2
 HCl
+hi_obliq
 hoc
 hydro-climate
 hydro-climatic
@@ -102,6 +109,7 @@ latitude/longitude
 lfpw
 lig127ka
 LITTLE_R
+lo_obliq
 MAM4-VBS
 meso-beta
 Meteor.
