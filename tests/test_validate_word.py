@@ -9,6 +9,9 @@ class TestCheckWord(unittest.TestCase):
         self.assertTrue(ignore_word("#1"))
         self.assertFalse(ignore_word("#1.1"))
         self.assertTrue(ignore_word("#313"))
+        self.assertTrue(ignore_word("-10^-14"))
+        self.assertFalse(ignore_word("--10^5"))
+        self.assertFalse(ignore_word("2^--8"))
 
     def test_int_float_currency(self):
         self.assertTrue(ignore_word("100738"))
