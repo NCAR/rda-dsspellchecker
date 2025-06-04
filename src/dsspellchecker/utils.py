@@ -112,7 +112,7 @@ def ignore_word(word, **kwargs):
     if len(word) > 1 and word[0] == '#' and word[1:].isnumeric():
         return True
 
-    # ignore integers, floats and currency values
+    # ignore integers, floats, currencies, and exponents
     if word[0] in ('-', '$'):
         word = word[1:]
 
@@ -120,6 +120,10 @@ def ignore_word(word, **kwargs):
         word = word[2:-1]
 
     if word.replace(".", "").replace(",", "").isnumeric():
+        return True
+
+    rexp = re.compile(r"^\d{1,}\^-{0,1}\d{1,}$")
+    if rexp.match(word):
         return True
 
     # ignore acronyms containing all capital letters and numbers
