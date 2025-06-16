@@ -112,6 +112,10 @@ def ignore_word(word, **kwargs):
     if len(word) > 1 and word[0] == '#' and word[1:].isnumeric():
         return True
 
+    # ignore percents
+    if len(word) > 1 and word[-1] == '%' and word[0:-1].isnumeric():
+        return True
+
     # ignore integers, floats, currencies, and exponents
     if word[0] in ('-', '$'):
         word = word[1:]
@@ -267,7 +271,7 @@ def clean_word(word):
         stripped, word = strip_punctuation(word)
 
     cleaned_word = False
-    if word[0] in ('"', '\''):
+    if word[0] in ('"', '\'', "~"):
         word = word[1:]
         cleaned_word = True
 
