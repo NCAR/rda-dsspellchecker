@@ -113,7 +113,8 @@ def ignore_word(word, **kwargs):
         return True
 
     # ignore percents
-    if len(word) > 1 and word[-1] == '%' and word[0:-1].isnumeric():
+    if (len(word) > 1 and word[-1] == '%' and
+            word[0:-1].replace(".", "").isnumeric()):
         return True
 
     # ignore integers, floats, currencies, and exponents
