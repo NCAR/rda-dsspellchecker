@@ -271,7 +271,7 @@ def clean_word(word):
         stripped, word = strip_punctuation(word)
 
     cleaned_word = False
-    if word[0] in ('"', '\'', "~"):
+    if len(word) > 1 and word[0] in ('"', '\'', "~"):
         word = word[1:]
         cleaned_word = True
 
