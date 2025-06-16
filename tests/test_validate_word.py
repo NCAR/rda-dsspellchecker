@@ -13,6 +13,9 @@ class TestCheckWord(unittest.TestCase):
         self.assertFalse(ignore_word("--10^5"))
         self.assertFalse(ignore_word("2^--8"))
 
+    def test_percent(self):
+        self.assertTrue(ignore_word("10%"))
+
     def test_int_float_currency(self):
         self.assertTrue(ignore_word("100738"))
         self.assertTrue(ignore_word("307.957"))
