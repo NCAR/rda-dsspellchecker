@@ -71,6 +71,7 @@ ERA5_hourlyIVT
 ERA5_IWV
 facto
 GC-FID
+GC-FID/PTR-MS/others
 GCM/Mixed-layer
 Geo
 GEOS-Chem
@@ -106,6 +107,7 @@ IPSL-CM5B-LR
 IPSL-CM6A-LR
 IR-based
 ISOPOOH/hydrogen
+ISOPOOH_Hydroxyl
 JG/BG
 JPL-Oceans-8902
 JRA-3Q-COBE
@@ -187,6 +189,7 @@ sbsj
 sc_PDSI_pm
 Seasat
 SeaWinds
+Seed_4,3-ISOPOOH
 Seed_Alpha-pinene
 Seed_F9toF15
 Shields/Kiehl
@@ -202,6 +205,7 @@ SSP5-8.5
 SSP5-85
 Study_20140114_ISOPRENE/CYCLOHEXANE_Ozone_No
 Study_20140116_ALPHA-PINENE/Methyl
+Study_20140117_4-hydroxy
 Study_20140119_/ISOPRENE/4-hydroxy-3-hydroperoxy
 T31_gx3
 T-3
