@@ -70,6 +70,7 @@ ERA5_850hpawinds
 ERA5_hourlyIVT
 ERA5_IWV
 facto
+GC-FID
 GCM/Mixed-layer
 Geo
 GEOS-Chem
@@ -151,6 +152,8 @@ obs-nudging
 O2:CO2
 O3/HO2
 OH-oxidation
+OH+isop
+OHchem
 OldWeather3
 OldWeather.org
 past2k
@@ -197,6 +200,7 @@ SSP3-7.0
 SSP5-34-OS
 SSP5-8.5
 SSP5-85
+Study_20140114_ISOPRENE/CYCLOHEXANE_Ozone_No
 Study_20140116_ALPHA-PINENE/Methyl
 Study_20140119_/ISOPRENE/4-hydroxy-3-hydroperoxy
 T31_gx3
