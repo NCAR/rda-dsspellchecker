@@ -443,7 +443,8 @@ WOCE | World Ocean Circulation Experiment
 WOD | World Ocean Database
 WPS | WRF Pre-Processing System
 WRF | Weather Research and Forecasting Model
-WRF-Chem | Weather Research and Forecasting coupled with Chemistry
+WRF-ARW | Advanced Research WRF
+WRF-Chem | WRF coupled with Chemistry
 WRF-Var | WRF Variational Data Assimilation
 WSR | Weather Surveillance Radar
 WSR-88D | Weather Surveillance Radar-1988 Doppler
