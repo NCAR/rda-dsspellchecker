@@ -14,6 +14,7 @@
 4-OH-3-ONO2-ISOPN
 4,3-ISOPOOH
 90_WSOL
+Acid_15.6_ug/m3_OA1
 All-Hist
 A&M
 Amer.
@@ -94,6 +95,7 @@ HadSST2
 half_CO2
 HCl
 hi_obliq
+high-NOx
 hoc
 hydro-climate
 hydro-climatic
@@ -121,6 +123,7 @@ k-fold
 Ku-2000
 Ku-2001
 kwbc
+Lab_20170125_1-Hexanol/1-octanol/1-Nonanol/1-DECANOL/Methyl
 latitude/longitude
 lfpw
 lig127ka
@@ -167,6 +170,7 @@ OHchem
 OldWeather3
 OldWeather.org
 oxide/_Hydroxyl
+oxide/1-DODECANOL_Hydroxyl
 oxide/OZONE/formaldehyde_Nitrate
 past2k
 pb2nc
@@ -214,6 +218,7 @@ SSP3-7.0
 SSP5-34-OS
 SSP5-8.5
 SSP5-85
+standards/SOA
 Study_20140107_ISOPRENE/Methyl
 Study_20140110_ALPHA-PINENE/hydrogen
 Study_20140113_ALPHA-PINENE/nitric
