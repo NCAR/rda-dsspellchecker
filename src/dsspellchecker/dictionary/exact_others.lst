@@ -159,6 +159,7 @@ OH+isop
 OHchem
 OldWeather3
 OldWeather.org
+oxide/OZONE/formaldehyde_Nitrate
 past2k
 pb2nc
 PelicanFS
@@ -170,6 +171,7 @@ PlioMIP1
 PlioMIP2
 PlusRCP85
 priori
+PTR-MS
 r1i1p1f1
 r6i1p1
 README
@@ -205,11 +207,13 @@ SSP5-34-OS
 SSP5-8.5
 SSP5-85
 Study_20140107_ISOPRENE/Methyl
+Study_20140113_ALPHA-PINENE/nitric
 Study_20140114_ISOPRENE/CYCLOHEXANE_Ozone_No
 Study_20140116_ALPHA-PINENE/Methyl
 Study_20140117_4-hydroxy
 Study_20140119_/ISOPRENE/4-hydroxy-3-hydroperoxy
 Study_20140126_METHACROLEIN/nitrogen
+sulfate_HO2
 T31_gx3
 T-3
 TC-permitting
