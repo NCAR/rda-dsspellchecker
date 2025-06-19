@@ -15,7 +15,6 @@
 4,3-ISOPOOH
 90_WSOL
 A&M
-Acid_15.6_ug/m3_OA1
 AgiaMarina_Xyliatou
 All-Hist
 Amer.
@@ -84,7 +83,6 @@ GC-FID/PTR-MS/others
 GCM/Mixed-layer
 Geo
 GEOS-Chem
-Glycol_7.85_ug/m3_PEG2
 GPM_3IMERGDF
 GPM_3IMERGHH
 grid/node-registration
@@ -191,8 +189,6 @@ PFT-level
 pH
 PI-CTRL
 piControl
-pinene_107.4_ug/m3_aP1
-pinene_15.0_ug/m3_aP2
 PiPAN
 PlioMIP1
 PlioMIP2
@@ -200,8 +196,6 @@ PlusRCP85
 priori
 PTR-MS
 Qena_SVU
-radical_Squalane_26.6_ug/m3_Sq1
-radical_Sucrose_10.4_ug/m3_Su2
 r1i1p1f1
 r6i1p1
 README
@@ -236,7 +230,6 @@ SSP5-34-OS
 SSP5-8.5
 SSP5-85
 standards/SOA
-sulfate_12.5_ug/m3_AS5
 sulfate_4,3-isoprene
 sulfate_HO2
 T31_gx3
