@@ -55,6 +55,14 @@ class TestSpellCheck(unittest.TestCase):
         sc.check("This is a test of \"quotedgarbage\".")
         self.assertEqual(sc.misspelled_words, [])
 
+    def test_times(self):
+        sc.check("It is 17:05 pm in the evening")
+        self.assertEqual(sc.misspelled_words, [])
+        sc.check("It is 7 am in the morning")
+        self.assertEqual(sc.misspelled_words, [])
+        sc.check("It is 7:5 am in the morning")
+        self.assertEqual(sc.misspelled_words, ["am"])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
