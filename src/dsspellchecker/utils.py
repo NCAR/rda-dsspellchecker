@@ -54,6 +54,9 @@ def unknown(text, lstname, cursor, **kwargs):
                     pword = clean_word(pword)
                     if pword == "et" and cword == "al":
                         pass
+                    elif (cword in ('am', 'AM', 'pm', 'PM') and
+                          re.compile(r"\d{1,2}:\d{2}$").match(cword)):
+                        pass
                     elif not pword.replace(".", "").isnumeric():
                         misspelled_words.append(words[n])
 
