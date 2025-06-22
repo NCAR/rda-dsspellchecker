@@ -58,7 +58,7 @@ def unknown(text, lstname, cursor, **kwargs):
                         misspelled_words.append(words[n])
 
                 elif (cword in ('am', 'AM', 'pm', 'PM') and
-                      re.compile(r"\d{1,2}:\d{2}$").match(cword)):
+                      re.compile(r"\d{1,2}:\d{2}$").match(pword)):
                     pass
                 else:
                     if n > 0:
