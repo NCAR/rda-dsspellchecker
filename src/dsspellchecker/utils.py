@@ -49,17 +49,17 @@ def unknown(text, lstname, cursor, **kwargs):
 
         if len(separator) == 0:
             if checking_units:
+                pword = words[n-1].strip() if n > 0 else "XX"
+                pword = clean_word(pword)
                 if is_valid_word(cword, lstname, cursor):
-                    pword = words[n-1].strip() if n > 0 else "XX"
-                    pword = clean_word(pword)
                     if pword == "et" and cword == "al":
-                        pass
-                    elif (cword in ('am', 'AM', 'pm', 'PM') and
-                          re.compile(r"\d{1,2}:\d{2}$").match(cword)):
                         pass
                     elif not pword.replace(".", "").isnumeric():
                         misspelled_words.append(words[n])
 
+                elif (cword in ('am', 'AM', 'pm', 'PM') and
+                      re.compile(r"\d{1,2}:\d{2}$").match(cword)):
+                    pass
                 else:
                     if n > 0:
                         if (len(cword) == 1 and cword.isalpha() and cword ==
