@@ -56,12 +56,16 @@ class TestSpellCheck(unittest.TestCase):
         self.assertEqual(sc.misspelled_words, [])
 
     def test_times(self):
-        sc.check("It is 17:05 pm in the evening")
+        sc.check("It is 17:05 pm in the evening.")
         self.assertEqual(sc.misspelled_words, [])
-        sc.check("It is 7 am in the morning")
+        sc.check("It is 7 am in the morning.")
         self.assertEqual(sc.misspelled_words, [])
-        sc.check("It is 7:5 am in the morning")
+        sc.check("It is 7:5 am in the morning.")
         self.assertEqual(sc.misspelled_words, ["am"])
+
+    def test_non_english(self):
+        sc.check("The Klima is another word for Climate.")
+        self.assertEqual(sc.misspelled_words, [])
 
 
 if __name__ == "__main__":
