@@ -100,6 +100,12 @@ class SpellChecker:
                             file_exts=True))
             if self._misspelled_words:
                 check_text = self.new_text(check_text)
+                self._misspelled_words = (
+                        unknown(check_text, "non_english", self._cursor,
+                                file_exts=True))
+
+            if self._misspelled_words:
+                check_text = self.new_text(check_text)
                 for lstname in exact_matches:
                     if self._misspelled_words:
                         self._misspelled_words = (
