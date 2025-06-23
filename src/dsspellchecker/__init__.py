@@ -63,13 +63,19 @@ class SpellChecker:
                                     "\u2010", "-"
                                 ).strip()
 
-        exact_matches = {'places', 'names', 'exact_others', 'acronyms'}
         # check the text against the general words with no word cleaning to
         # eliminate as many common words as possible
         self._misspelled_words = (
                 unknown(check_text, "general", self._cursor, file_exts=True,
                         cleanWord=False))
         if self._misspelled_words:
+            check_text = self.new_text(check_text)
+            self._misspelled_words = (
+                    unknown(check_text, "non_english", self._cursor,
+                            file_exts=True, cleanWord=False))
+
+        if self._misspelled_words:
+            exact_matches = {'places', 'names', 'exact_others', 'acronyms'}
 
             # check the text directly against the exact match valids with
             # no word cleaning because cleaning removes punctuation that might
