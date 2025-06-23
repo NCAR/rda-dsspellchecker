@@ -260,6 +260,10 @@ def ignore_word(word, **kwargs):
     if rexp.match(word):
         return True
 
+    rexp = re.compile(r"^sulfate\_C\d{1,}$")
+    if rexp.match(word):
+        return True
+
     rexp = re.compile(r"^.{2,}\_ug/m3\_.{2,}$")
     if rexp.match(word):
         return True
