@@ -51,6 +51,8 @@ cell/pixel-registration
 Centre
 CF3O-
 Chamber_20210203_DECAMETHYLCYCLOPENTASILOXANE_Hydroxyl
+Cl
+Cl2
 (CMIP)-class
 CMIP-class
 CMORization
@@ -209,6 +211,7 @@ oxide/_Hydroxyl
 oxide/1-DODECANOL_Hydroxyl
 Oxide/Acetonitrile/Dimethyl
 oxide/ALPHA-PINENE/hydrogen
+oxide/nitrite_Chlorine
 oxide/OZONE/formaldehyde_Nitrate
 past2k
 pb2nc
