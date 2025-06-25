@@ -193,12 +193,14 @@ NO3-
 NO3/HO2
 Noah-MP
 NO-CL
+NO3-initiated
 NorESM1
 NOx
 NSCAT-1
 NSCAT-2
 (NSF)-funded
 NSF-funded
+NWM-based
 obs-nudging
 O2:CO2
 O3/HO2
@@ -225,6 +227,7 @@ PFT-level
 pH
 PI-CTRL
 piControl
+pinene+NO3
 PiPAN
 PlioMIP1
 PlioMIP2
@@ -241,6 +244,8 @@ README
 Reid500
 rjtd
 rksl
+RO2+RO2
+RO2+RO2-dominated
 run001
 run002
 run003
@@ -270,6 +275,7 @@ SSP5-8.5
 SSP5-85
 standards/SOA
 sulfate_4,3-isoprene
+sulfate_60%RH
 sulfate_med
 sulfate_HO2
 Sulfoxide/Acetonitrile_Hydroxyl
@@ -282,6 +288,7 @@ TC-permitting
 TD-LIF
 TDF-11
 TECA_BARD_v1.0
+Tech
 Technion_Haifa_IL
 TempestExtremes
 TempestLR
@@ -304,6 +311,7 @@ Vol.
 vs.
 Wiezmann_Institute
 WindSat
+WRF-Hydro
 WRF-Lake
 x
 xAER
