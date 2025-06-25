@@ -4,12 +4,14 @@
 =
 &
 0.4-mb
+1,2-DHI
 1-hydroxy-2-hydroperoxy
 0_AEQ
 180_VEQ
 1xCO2
 2-Methyl-3-buten-1-ol
 2-Methylbut-3-ene-1
+2-methylbut-3-ene-1
 20CRv3-WRF
 270_SSOL
 2xCO2
@@ -231,6 +233,7 @@ pre-Helene
 priori
 PTR-MS
 Qena_SVU
+radical_N/A
 radical_N/A_Isoprene
 r1i1p1f1
 r6i1p1
@@ -267,6 +270,7 @@ SSP5-8.5
 SSP5-85
 standards/SOA
 sulfate_4,3-isoprene
+sulfate_med
 sulfate_HO2
 Sulfoxide/Acetonitrile_Hydroxyl
 Sulfoxide/Acetonitrile/Hydrogen
