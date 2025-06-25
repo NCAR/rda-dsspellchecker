@@ -211,6 +211,7 @@ oxide/_Hydroxyl
 oxide/1-DODECANOL_Hydroxyl
 Oxide/Acetonitrile/Dimethyl
 oxide/ALPHA-PINENE/hydrogen
+Oxide/Dimethyl
 oxide/nitrite_Chlorine
 oxide/OZONE/formaldehyde_Nitrate
 past2k
@@ -267,6 +268,7 @@ SSP5-85
 standards/SOA
 sulfate_4,3-isoprene
 sulfate_HO2
+Sulfoxide/Acetonitrile_Hydroxyl
 Sulfoxide/Acetonitrile/Hydrogen
 T-3
 t_mean
