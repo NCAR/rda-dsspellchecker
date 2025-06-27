@@ -1,5 +1,6 @@
 import getopt
 import inspect
+import json
 import os
 import sqlite3
 import sys
@@ -302,6 +303,49 @@ def dump_db(args, **kwargs):
         print("... done.")
 
 
+def find_words(args):
+    util_name = args[-1]
+    del args[-1]
+    try:
+        if len(args) > 0:
+            if args[0] == "-h":
+                raise getopt.GetoptError("")
+            elif len(args) != 1:
+                raise getopt.GetoptError("this command takes exactly one argument")
+
+            opts, args = getopt.getopt(args, "", [])
+    except getopt.GetoptError as err:
+        func_name = inspect.currentframe().f_code.co_name
+        if len(str(err)) > 0:
+            print("Error: {}\n".format(err))
+
+        print((
+            "usage: {} {} <pattern>".format(util_name, func_name) + "\n"
+            "\n"
+            "required:\n"
+            "<pattern>     the pattern to match\n"
+            "\n"
+            "pattern is an SQL 'like' pattern:\n"
+            " - '%' represents zero or more characters (%cat% matches cat and scatter)\n"
+            " - '_' (underscore) represents exactly one character (_cat% matches scatter but not cat)\n"
+        ))
+        sys.exit(1)
+
+    words = []
+    dict_dir = os.path.join(os.path.dirname(__file__), "dictionary")
+    db_name = os.path.join(dict_dir, "valids.db")
+    conn = sqlite3.connect(db_name)
+    cursor = conn.cursor()
+    for table in db_config:
+        cursor.execute("select " + db_config[table]['columns'][0] + " from " + table + " where " + db_config[table]['columns'][0] + " like ?", (args[0], ))
+        res = cursor.fetchall()
+        words.extend([e[0] for e in res])
+
+    conn.close()
+    words.sort()
+    print(json.dumps(words))
+
+
 def dsspellchecker_manage():
     util_name = inspect.currentframe().f_code.co_name
     args = sys.argv[1:] + [util_name]
@@ -314,6 +358,7 @@ def dsspellchecker_manage():
             "    add_acronym   add an acronym to the spellchecker database\n"
             "    build_db      build the spellchecker database\n"
             "    dump_db       dump the spellchecker database\n"
+            "    find_words    find words in the spellchecker database\n"
             "\n"
             "use `{} <command> -h` to get help for the specific command".format(util_name) + "\n"
         ))
@@ -327,6 +372,8 @@ def dsspellchecker_manage():
         add_acronym(args[1:])
     elif args[0] == "dump_db":
         dump_db(args[1:])
+    elif args[0] == "find_words":
+        find_words(args[1:])
     else:
         raise ValueError("invalid command")
 
