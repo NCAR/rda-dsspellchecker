@@ -184,7 +184,7 @@ def ignore_word(word, **kwargs):
     if len(word) > 2 and word[-2:] == ".x" and word[:-2].isnumeric():
         return True
 
-    rexp = re.compile("^[0-9]{1,}[a-zA-Z]{1,}$")
+    rexp = re.compile("^[0-9]{1,}(\.[0-9]{1,}){0,1}[a-zA-Z]{1,}$")
     if rexp.match(word):
         return True
 
