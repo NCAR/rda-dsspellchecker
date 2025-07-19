@@ -184,7 +184,7 @@ def ignore_word(word, **kwargs):
     if len(word) > 2 and word[-2:] == ".x" and word[:-2].isnumeric():
         return True
 
-    rexp = re.compile("^[0-9]{1,}(\.[0-9]{1,}){0,1}[a-zA-Z]{1,}$")
+    rexp = re.compile(r"^[0-9]{1,}(\.[0-9]{1,}){0,1}[a-zA-Z]{1,}$")
     if rexp.match(word):
         return True
 
@@ -252,7 +252,8 @@ def ignore_word(word, **kwargs):
         return True
 
     # ignore ICARUS project title words
-    rexp = re.compile(r"^(Chamber|Group|Lab|NCAR|Study)\_\d{8}\_.{2,}$")
+    rexp = re.compile(
+            r"^(Chamber|Group|Lab|NCAR|Study|Ziemann)\_\d{8}\_.{2,}$")
     if rexp.match(word):
         return True
 
