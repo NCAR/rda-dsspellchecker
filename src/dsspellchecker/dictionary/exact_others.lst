@@ -41,6 +41,7 @@ Argo
 ARISE-SAI-1.5
 babj
 BCC-CSM2-MR
+b-ocimene
 b-pinene
 Bull.
 C4-hydroxy-carbonyl
@@ -236,6 +237,7 @@ past2k
 pb2nc
 PelicanFS
 peroxide/10102-44-0_Hydroxyl
+Peroxide/beta-Pinene_Nitrate
 Peroxide/Ozone_Hydroxyl
 PFT-level
 pH
@@ -259,6 +261,7 @@ Reid500
 rjtd
 rksl
 RO2+RO2
+RO2+HO2-dominated
 RO2+RO2-dominated
 run001
 run002
