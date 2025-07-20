@@ -64,6 +64,7 @@ CH3CH2C(O)OCH(O.)CH3
 Chamber_20210203_DECAMETHYLCYCLOPENTASILOXANE_Hydroxyl
 Cl
 Cl-atom
+Cl-initiated
 Cl2
 (CMIP)-class
 CMIP-class
@@ -305,6 +306,7 @@ SSP5-85
 standards/SOA
 sulfate_4,3-isoprene
 sulfate_60%RH
+sulfate_A5_neutral
 sulfate_med
 sulfate_HO2
 sulfate_RH40%
@@ -338,6 +340,7 @@ USArray
 v850
 v-
 v-component
+VOC:Cl2
 VOC:Ox
 Vol.
 vs.
