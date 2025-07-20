@@ -207,6 +207,7 @@ NetCDF-4
 Nina-like
 nitrite/10102-44-0_Hydroxyl
 nitrite/10102-44-0/OZONE_Hydroxyl
+nitrite/ammonia_Hydroxyl
 NO3
 NO3-
 NO3/HO2
@@ -237,6 +238,7 @@ OH+isop
 OH/NOx
 OH/NOx_1
 OH/NOx_2
+OH/NOx_3_NH3
 OH/NOx_highConc
 OH/NOx_lowVOC:Ox
 OH/NOx_TPTD
