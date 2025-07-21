@@ -18,6 +18,7 @@
 20CRv3-WRF
 270_SSOL
 2xCO2
+3-Dodecanone
 4-hydroxy-3-hydroperoxy
 4-km
 4-nitrocatechol
@@ -259,6 +260,7 @@ OldWeather3
 OldWeather.org
 oxide/_Hydroxyl
 oxide/1-DODECANOL_Hydroxyl
+oxide/3-Dodecanone_Hydroxyl
 Oxide/Acetonitrile/Dimethyl
 oxide/ALPHA-PINENE/hydrogen
 oxide/Ammonia_Hydroxyl
