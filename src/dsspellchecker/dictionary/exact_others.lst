@@ -20,6 +20,7 @@
 270_SSOL
 2xCO2
 3-Dodecanone
+4-Decyl
 4-hydroxy-3-hydroperoxy
 4-km
 4-nitrocatechol
@@ -270,6 +271,7 @@ oxide/_Hydroxyl
 oxide/1-DODECANOL_Hydroxyl
 oxide/2-Decyl
 oxide/3-Dodecanone_Hydroxyl
+oxide/4-Decyl
 oxide/4-Dodecanone_Hydroxyl
 oxide/5-Dodecanone_Hydroxyl
 Oxide/Acetonitrile/Dimethyl
