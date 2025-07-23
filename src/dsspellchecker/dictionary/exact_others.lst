@@ -276,6 +276,7 @@ O2_clone
 O2:CO2
 O3/HO2
 O3/NOx
+OH-initiated
 OH-oxidation
 OH+HMPR-PAN
 OH+isop
@@ -394,6 +395,7 @@ sulfate_RH85%
 Sulfoxide/Acetonitrile_Hydroxyl
 Sulfoxide/Acetonitrile/Hydrogen
 Sulfoxide/Acetonitrile/Methylene
+surrogate/NOx/H2O2_Hydroxyl
 T-3
 t_mean
 T31_gx3
