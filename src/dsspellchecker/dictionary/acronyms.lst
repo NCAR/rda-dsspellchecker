@@ -386,6 +386,9 @@ SiB | Simple Biosphere
 SIRS | Satellite Infrared Spectrometer
 SLP | Sea Level Pressure
 SMS-1 | Synchronous Meteorological Satellite-1
+SMYLE | Seasonal-to-MultiYear Large Ensemble
+SMYLE-FOSI | Seasonal-to-MultiYear Large Ensemble Forced Ocean and Sea Ice component
+SMYLE-landonly | Seasonal-to-MultiYear Large Ensemble land-only component
 SNOTEL | Snow Telemetry
 SOC | Southampton Oceanography Centre
 SODA | Simple Ocean Data Assimilation
