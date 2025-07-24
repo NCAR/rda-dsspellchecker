@@ -350,6 +350,12 @@ amount
 amounting
 amounts
 ample
+amplification
+amplifications
+amplified
+amplifies
+amplify
+amplifying
 amplitude
 amplitudes
 amply
@@ -1218,6 +1224,8 @@ chiefs
 chloride
 chlorides
 chlorine
+chlorofluorocarbon
+chlorofluorocarbons
 chlorophyll
 choice
 choices
@@ -2050,6 +2058,12 @@ declassifications
 declassified
 declassify
 declassifying
+decline
+declined
+declines
+declination
+declinations
+declining
 decode
 decoded
 decoder
@@ -3139,6 +3153,10 @@ exposes
 exposing
 exposure
 exposures
+export
+exported
+exporting
+exports
 express
 expressed
 expresses
@@ -3630,6 +3648,8 @@ geoscience
 geosciences
 geospace
 geostationary
+geostrophic
+geostrophically
 get
 gets
 getting
@@ -3843,6 +3863,9 @@ hexadecane
 hexamethylcyclotrisiloxane
 hexanes
 hexanol
+hierarchical
+hierarchically
+hierarchy
 high
 higher
 highest
@@ -3869,6 +3892,7 @@ historical
 historically
 histories
 history
+hmix
 hold
 holding
 holds
@@ -4410,6 +4434,10 @@ ionization
 ionosphere
 ionospheric
 ions
+iron
+ironed
+ironing
+irons
 irradiance
 irregular
 irregularities
@@ -5061,6 +5089,10 @@ minuses
 minute
 minutely
 minutes
+mirror
+mirrored
+mirroring
+mirrors
 miscellaneous
 miscellany
 misinterpret
@@ -5198,11 +5230,13 @@ much
 multi
 multi-attributable
 multi-decadal
+multi-platform
+multi-sensor
+multi-year
 multidecadal
 multifunctional
 multilayer
 multiphase
-multi-platform
 multiplatform
 multiple
 multiples
@@ -5216,9 +5250,8 @@ multiplying
 multiplys
 multiresolution
 multiscale
-multi-sensor
 multivariate
-multi-year
+multiyear
 must
 mustard
 muster
@@ -5893,6 +5926,7 @@ phenomena
 phenomenon
 phosphate
 phosphates
+phosphorus
 photochemical
 photochemistry
 photolysis
@@ -6477,6 +6511,8 @@ radicalizes
 radicalizing
 radicals
 radio
+radiocarbon
+radiocarbons
 radiometer
 radiometers
 radios
@@ -7398,6 +7434,7 @@ signing
 signs
 silicate
 silicates
+silicon
 siloxanol
 siloxanols
 similar
@@ -7488,6 +7525,8 @@ slower
 slowing
 slowly
 slows
+sluggish
+sluggishly
 small
 smaller
 smallest
@@ -8185,6 +8224,8 @@ thermalize
 thermalized
 thermally
 thermals
+thermocline
+thermoclines
 thermodynamic
 thermodynamics
 thermogram
@@ -8657,6 +8698,11 @@ vehicle
 vehicles
 velocities
 velocity
+vent
+vented
+ventilation
+venting
+vents
 venue
 venues
 verification
@@ -8926,7 +8972,9 @@ zeroes
 zeroing
 zeros
 zonal
+zonally
 zone
 zoned
 zones
 zoning
+zooplankton
