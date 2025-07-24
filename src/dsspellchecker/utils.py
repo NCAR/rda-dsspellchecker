@@ -253,7 +253,7 @@ def ignore_word(word, **kwargs):
 
     # ignore ICARUS project title words
     rexp = re.compile(
-            r"^(Chamber|Group|Lab|NCAR|Study|Ziemann)\_\d{8}\_.{2,}$")
+            r"^(CAPS|Chamber|Group|Lab|NCAR|Study|Ziemann)\_\d{8}\_.{2,}$")
     if rexp.match(word):
         return True
 
