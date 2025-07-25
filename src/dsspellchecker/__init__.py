@@ -176,10 +176,25 @@ class SpellChecker:
 
         # ignore 'unknown' acronyms
         if self._misspelled_words:
-            for x in range(0, self._misspelled_words.__len__()):
+            for x in range(0, len(self._misspelled_words)):
                 word = strip_plural(self._misspelled_words[x].replace(".", ""))
                 if word.isalnum() and word == word.upper():
                     self._misspelled_words[x] = ""
+                else:
+                    parts = word.split("/")
+                    if len(parts) > 1:
+                        for y in range(0, len(parts)):
+                            if (parts[y].isalnum() and parts[y] ==
+                                    parts[y].upper()):
+                                parts[y] = ""
+
+                        check_text = " ".join([e for e in parts if len(e) > 0])
+                        if len(check_text) == 0:
+                            self._misspelled_words[x] = ""
+                        else:
+                            self._misspelled_words[x] = (
+                                    unknown(check_text, "exact_others",
+                                            self._cursor))
 
             self._misspelled_words = [e for e in self._misspelled_words if
                                       len(e) > 0]
