@@ -276,6 +276,10 @@ def clean_word(word):
     if len(word) == 0:
         return ""
 
+    # convert "one-or-many" to plural
+    if len(word) > 3 and word[-3:] == "(s)":
+        word = word[0:-3] + "s"
+
     # strip html entities
     entity = re.compile(r"&\S{1,};")
     m = entity.findall(word)
