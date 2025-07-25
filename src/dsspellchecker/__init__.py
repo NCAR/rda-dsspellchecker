@@ -85,7 +85,7 @@ class SpellChecker:
                 if self._misspelled_words:
                     self._misspelled_words = (
                             unknown(check_text, lstname, self._cursor,
-                                    cleanWord=False))
+                                    cleanWord=False, separator="/"))
                     if self._misspelled_words:
                         check_text = self.new_text(check_text)
 
