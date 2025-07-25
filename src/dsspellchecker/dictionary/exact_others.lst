@@ -158,6 +158,7 @@ GridRad-Severe
 GrIS
 Guan_Waliser_v2
 H2O2
+H2O2_Hydroxyl
 H2SO4_70%
 HadISD.1.0.0.2011f
 HadISD.1.0.0.2012p
@@ -169,6 +170,7 @@ half_CO2
 HC(=O)OCH(O.)CH3
 HC(O)OCH(O.)CH3
 HCl
+HeatRisk
 hi_obliq
 high-NOx
 HMPR-PAN
@@ -456,6 +458,7 @@ Wiezmann_Institute
 WindSat
 WRF-Hydro
 WRF-Lake
+WRF-urban
 x
 xAER
 xarray
