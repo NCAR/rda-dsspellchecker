@@ -196,8 +196,10 @@ class SpellChecker:
                                     unknown(check_text, "exact_others",
                                             self._cursor))
 
-            self._misspelled_words = [e for e in self._misspelled_words if
-                                      len(e) > 0]
+            #self._misspelled_words = [e for e in self._misspelled_words if
+            #                          len(e) > 0]
+            self._misspelled_words = [x for e in self._misspelled_words for
+                                      x in e]
 
     def new_text(self, text, **kwargs):
         """
