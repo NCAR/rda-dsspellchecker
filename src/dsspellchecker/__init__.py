@@ -58,7 +58,7 @@ class SpellChecker:
 
         check_text = text
         check_text = (check_text.replace("\n", " ").replace("\u2010", "-")
-                                .replace("/", " ").strip())
+                                .strip())
 
         # check the text against the general words with no word cleaning to
         # eliminate as many common words as possible
@@ -87,6 +87,7 @@ class SpellChecker:
                         check_text = self.new_text(check_text)
 
         # at this point, remaining words are non-cleaned words
+        check_text = check_text.replace("/", " ")
         if self._misspelled_words:
             check_text = self.new_text(check_text)
 
