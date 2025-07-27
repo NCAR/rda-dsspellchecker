@@ -57,11 +57,8 @@ class SpellChecker:
             return
 
         check_text = text
-        check_text = check_text.replace(
-                                    "\n", " "
-                                ).replace(
-                                    "\u2010", "-"
-                                ).strip()
+        check_text = (check_text.replace("\n", " ").replace("\u2010", "-")
+                                .replace("/", " ").strip())
 
         # check the text against the general words with no word cleaning to
         # eliminate as many common words as possible
@@ -207,7 +204,6 @@ class SpellChecker:
                             self._misspelled_words.append(x)
                     else:
                         self._misspelled_words.append(e)
-
 
     def new_text(self, text, **kwargs):
         """
