@@ -286,6 +286,7 @@ O2_clone
 O2:CO2
 O3/HO2
 O3/NOx
+O3+NO2+H2O2
 OH-initiated
 OH-oxidation
 OH+HMPR-PAN
@@ -414,10 +415,11 @@ sulfate_EPA2290A
 sulfate_EPA2290B
 sulfate_EPA2292A
 sulfate_EPA2292B
+sulfate_HO2
 sulfate_LIM-2
 sulfate_med
 sulfate_medRH
-sulfate_HO2
+sulfate_noH2O2
 sulfate_RH40%
 sulfate_RH50
 sulfate_RH85%
