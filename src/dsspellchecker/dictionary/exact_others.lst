@@ -94,6 +94,7 @@ cesm2_0_alpha10d
 CESM2-CISM2
 CF3O-
 CH3CH2C(O)OCH(O.)CH3
+chloride_DarkReactiveUptake_RH86
 Cl
 Cl-atom
 Cl-initiated
@@ -253,6 +254,7 @@ ncecat
 ne30
 NetCDF
 NetCDF-4
+NH4Cl
 Nina-like
 nitrite/10102-44-0_Hydroxyl
 nitrite/10102-44-0/OZONE_Hydroxyl
