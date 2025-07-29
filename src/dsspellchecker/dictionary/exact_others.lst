@@ -94,6 +94,7 @@ cesm2_0_alpha10d
 CESM2-CISM2
 CF3O-
 CH3CH2C(O)OCH(O.)CH3
+chloride_DarkReactiveUptake_RH60
 chloride_DarkReactiveUptake_RH86
 Cl
 Cl-atom
@@ -190,6 +191,7 @@ i.e.,
 I/A
 I-CIMS
 IEPOX_None_Ammonium
+IEPOX_None_Sodium
 IIb
 IIc
 IIIb
@@ -244,6 +246,7 @@ Multi-satellitE
 Mundhenk/Nardi
 MWprecipitation
 N/A
+NaCl
 NaOH
 NaNO3
 (NAS)-funded
