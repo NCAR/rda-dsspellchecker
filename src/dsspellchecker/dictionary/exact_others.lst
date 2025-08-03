@@ -248,6 +248,7 @@ Multi-satellitE
 Mundhenk/Nardi
 MWprecipitation
 N/A
+Na2SO4
 NaCl
 NaOH
 NaNO3
@@ -411,11 +412,15 @@ sulfate_70%RH
 sulfate_A2_neutral
 sulfate_A5_neutral
 sulfate_A8_neutral
+sulfate_APN-1
 sulfate_APN-2
+sulfate_C2_continuous
+sulfate_C4_continuous
 sulfate_DarkReactiveUptake_RH42
 sulfate_DarkReactiveUptake_RH53
 sulfate_DarkReactiveUptake_RH57
 sulfate_DarkReactiveUptake_RH69_addedNaOH
+sulfate_DarkReactiveUptake_RH81
 sulfate_DarkReactiveUptake_RHdry
 sulfate_E2
 sulfate_E3
