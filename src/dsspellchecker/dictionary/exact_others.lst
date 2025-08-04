@@ -414,7 +414,9 @@ sulfate_A5_neutral
 sulfate_A8_neutral
 sulfate_APN-1
 sulfate_APN-2
+sulfate_APN-3
 sulfate_C2_continuous
+sulfate_C3_continuous
 sulfate_C4_continuous
 sulfate_DarkReactiveUptake_RH42
 sulfate_DarkReactiveUptake_RH53
@@ -442,11 +444,13 @@ sulfate_LIM-2
 sulfate_LIM-3
 sulfate_med
 sulfate_medRH
+sulfate_MIX-2
 sulfate_noH2O2
 sulfate_RH40%
 sulfate_RH50
 sulfate_RH85%
 sulfate_SEQ-1
+sulfate_SEQ-2
 Sulfoxide/Acetonitrile_Hydroxyl
 Sulfoxide/Acetonitrile/Hydrogen
 Sulfoxide/Acetonitrile/Methylene
