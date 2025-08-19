@@ -127,7 +127,7 @@ def ignore_word(word, **kwargs):
     if len(word) > 3 and word[0:2] == "($" and word[-1] == ')':
         word = word[2:-1]
 
-    if word.replace(".", "").replace(",", "").isnumeric():
+    if word.replace(".", "").replace(",", "").replace("^", "").isnumeric():
         return True
 
     rexp = re.compile(r"^\d{1,}\^-{0,1}\d{1,}$")
