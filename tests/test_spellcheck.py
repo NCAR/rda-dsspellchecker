@@ -48,6 +48,10 @@ class TestSpellCheck(unittest.TestCase):
     def test_units(self):
         sc.check("This dataset contains 10 m winds at high (4 km) resolution.")
         self.assertEqual(sc.misspelled_words, [])
+        sc.check("This dataset has 3-km resolution.")
+        self.assertEqual(sc.misspelled_words, [])
+        sc.check("This dataset has 3-kms resolution.")
+        self.assertEqual(sc.misspelled_words, ["3-kms"])
 
     def test_quoted(self):
         sc.check("This is a test of quotedgarbage.")
