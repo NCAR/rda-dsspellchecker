@@ -36,6 +36,12 @@ def unknown(text, lstname, cursor, **kwargs):
             n += 1
             continue
 
+        parts = words[n].split("-")
+        if (len(parts) == 2 and parts[0].isnumeric() and
+                is_valid_word(parts[1], "unit_abbrevs", cursor)):
+            n += 1
+            continue
+
         cword = words[n]
         if 'trimPlural' in kwargs and kwargs['trimPlural']:
             cword = strip_plural(cword)
