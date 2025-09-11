@@ -10,7 +10,5 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger rda-web-prod01 deployment
-        run: curl -s -f -d "host=rda-web-prod01.ucar.edu&build_command=/usr/local/decs/bin/dsspellchecker_deploy" "https://rda.ucar.edu/cgi-bin/cicd"
       - name: Trigger GDEX deployment
         run: curl -s -o - "https://gdex.k8s.ucar.edu/redeploy/spellchecker/"
