@@ -86,19 +86,27 @@ def unknown(text, lstname, cursor, **kwargs):
                     cword = cword[:-2]
 
                 if not is_valid_word(cword, lstname, cursor):
-                    misspelled_words.append(words[n])
+                    if cword[-1] == ')':
+                        if not is_valid_word(cword[0:-1], lstname, cursor):
+                            misspelled_words.append(words[n])
+
+                    else:
+                        misspelled_words.append(words[n])
 
         else:
             parts = cword.split(separator)
             m = 0
             failed = False
-            while m < len(parts):
+            while not failed and m < len(parts):
                 if (not ignore_word(parts[m], **ikwargs) and not
                         is_valid_word(parts[m], lstname, cursor)):
                     if parts[m][-2:] == "'s":
                         if not is_valid_word(parts[m][:-2], lstname, cursor):
                             failed = True
-                            break
+
+                    elif parts[m][-1] == ')':
+                        if not is_valid_word(parts[m][:-1], lstname, cursor):
+                            failed = True
 
                     else:
                         failed = True
