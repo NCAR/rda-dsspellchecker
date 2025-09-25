@@ -314,7 +314,7 @@ def clean_word(word):
     if word[-1] in (',', '"', '\''):
         word = word[:-1]
         if len(word) == 0:
-            return
+            return ""
 
         cleaned_word = True
 
@@ -322,14 +322,14 @@ def clean_word(word):
     if word[-1] == ")" and not rexp.search(word):
         word = word[:-1]
         if len(word) == 0:
-            return
+            return ""
 
         cleaned_word = True
 
     if len(word) >= 2 and word[-2:] == ").":
         word = word[:-2]
         if len(word) == 0:
-            return
+            return ""
 
         cleaned_word = True
 
@@ -337,7 +337,7 @@ def clean_word(word):
             string.ascii_uppercase):
         word = word[:-2]
         if len(word) == 0:
-            return
+            return ""
 
         cleaned_word = True
 
