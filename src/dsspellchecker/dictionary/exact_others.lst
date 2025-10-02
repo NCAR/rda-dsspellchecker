@@ -152,6 +152,7 @@ ERA5_IWV
 exp1
 exp2
 extSPCZ-A
+f19_f19
 facto
 FastEddy
 FV1_gx1v6
@@ -306,6 +307,7 @@ o-ethyltoluene
 o-cresol
 o-xylene
 obs-nudging
+O+
 O2_#2
 O2_#3
 O2_again
