@@ -48,6 +48,7 @@
 4-OH-3-ONO2-ISOPN
 4,3-ISOPOOH
 4,4-Dipropylheptane
+4D-VAR
 4xCO2
 5-Decyl
 90_WSOL
@@ -153,6 +154,7 @@ ERA5_IWV
 ERA5-Land
 exp1
 exp2
+expver=0001
 extSPCZ-A
 f19_f19
 facto
@@ -179,6 +181,7 @@ GridRad.org
 GridRad-Severe
 GrIS
 Guan_Waliser_v2
+H-TESSEL
 H2O2
 H2O2_Hydroxyl
 H2SO4_70%
