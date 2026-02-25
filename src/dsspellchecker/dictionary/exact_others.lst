@@ -103,6 +103,8 @@ CESM2-CISM2
 CF-1.11
 CF3O-
 CF-compliant
+CfRadial1
+CfRadial2
 CH2OO+H2O
 CH3CH2C(O)OCH(O.)CH3
 Chem.
@@ -421,6 +423,8 @@ run007
 run008
 run009
 Rx1day
+S-Pol
+S-band
 SA-based
 same/next-day
 Sara&Weihua
