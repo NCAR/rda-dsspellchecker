@@ -100,6 +100,9 @@ CESM-cocco
 CESM1-CAM5
 cesm2_0_alpha10d
 CESM2-CISM2
+CESM2-MDM-historical
+CESM2-MDM-historical-to-SSP370
+CESM2-MDM-PI
 CF-1.11
 CF3O-
 CF-compliant
