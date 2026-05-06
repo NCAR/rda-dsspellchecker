@@ -157,8 +157,7 @@ class SpellChecker:
 
         if self._misspelled_words:
             check_text = text
-            check_text = (check_text.replace("/", " ").replace("\n", " ")
-                                    .strip())
+            check_text = check_text.replace("\n", " ").strip()
             check_text = self.new_text(check_text, includePrevious=True)
             # check text directly against the unit abbreviations valids
             self._misspelled_words = (unknown(check_text, "unit_abbrevs",
@@ -202,8 +201,7 @@ class SpellChecker:
             for e in l:
                 if len(e) > 0:
                     if isinstance(e, list):
-                        for x in e:
-                            self._misspelled_words.append(x)
+                        self._misspelled_words.append("/".join([x for x in e]))
                     else:
                         self._misspelled_words.append(e)
 
