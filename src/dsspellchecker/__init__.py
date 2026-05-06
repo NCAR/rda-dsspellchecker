@@ -85,6 +85,11 @@ class SpellChecker:
                                     cleanWord=False, separator="/"))
                     if self._misspelled_words:
                         check_text = self.new_text(check_text)
+                        self._misspelled_words = (
+                                unknown(check_text, lstname, self._cursor,
+                                        cleanWord=False, separator="-"))
+                       if self._misspelled_words:
+                           check_text = self.new_text(check_text)
 
         # at this point, remaining words are non-cleaned words
         check_text = check_text.replace("/", " ")
