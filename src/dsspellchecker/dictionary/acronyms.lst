@@ -62,6 +62,7 @@ CESM | NCAR Community Earth System Model
 CESM-HR | NCAR Community Earth System Model High ocean Resolution
 CESM-LR | NCAR Community Earth System Model Low ocean Resolution
 CESM1.2 | NCAR Community Earth System Model version 1.2
+CFBM | Community Fire Behavior Model
 CFDDA | NCAR's Climate Four Dimensional Data Assimilation
 CFS | Climate Forecast System
 CFSR | Climate Forecast System Reanalysis
@@ -433,6 +434,7 @@ TVA | Tennessee Valley Authority
 UADB | Upper Air Database
 UCAR | University Corporation for Atmospheric Research
 UCP | UCAR Community Programs
+UFS | Unified Forecast System
 UNEP | United National Environment Programme
 UNESCO | United Nations Educational, Scientific and Cultural Organization
 USA | United States of America
