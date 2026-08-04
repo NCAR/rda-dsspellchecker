@@ -55,6 +55,7 @@
 A-/I-
 a-pinene+NO3
 A&M
+ACCESS-ESM-1-5
 ACDD-1.3
 acid_C6_continuous
 acid/Acetonitrile_Hydroxyl
@@ -126,6 +127,8 @@ Cl2
 (CMIP)-class
 cice
 CMIP-class
+CMIP5-era
+CMIP6-era
 CMIP6-PMIP4
 CMORization
 CMORize
@@ -157,6 +160,7 @@ e.e21.E1850.f09_g17.CMIP6-piControl.*
 ecmf
 e.g.
 e.g.,
+EC-Earth-Veg
 ECC_0
 EGDBE(A)
 EESI-MS
@@ -292,11 +296,13 @@ mizuRoute
 mm/day
 mm/hour
 mmmm
+MPI-ESM1-2-HR
 Mr.
 Multi-satellitE
 Mundhenk/Nardi
 MWprecipitation
 N/A
+NA-CORDEX-CMIP6
 Na2SO4
 NaCl
 NaOH
@@ -329,6 +335,7 @@ NOAA-15
 Noah-MP
 NoBiome
 NorESM1
+NorESM2-MM
 NOx
 NSCAT-1
 NSCAT-2
