@@ -192,11 +192,13 @@ ERA5_850hpawinds
 ERA5_hourlyIVT
 ERA5_IWV
 ERA5-Land
+ExB
 exp1
 exp2
 expver=0001
 extSPCZ-A
 f09
+f10.7
 f19_f19
 facto
 FastEddy
@@ -284,6 +286,7 @@ JRA-3Q-COBE
 Jupyter
 KAUST_Campus
 Kelvin
+Kp
 k-fold
 Ku-2000
 Ku-2001
