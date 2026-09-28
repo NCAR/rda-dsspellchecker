@@ -40,6 +40,7 @@
 3-Dodecanone
 3,4-Diethylhexane
 3o_ApHN
+3xCO2
 4-Decyl
 4-hydroxy-3-hydroperoxy
 4-km
@@ -51,6 +52,7 @@
 4D-VAR
 4xCO2
 5-Decyl
+6xCO2
 90_WSOL
 A-/I-
 a-pinene+NO3
@@ -78,6 +80,13 @@ b-caryophyllene
 b-ocimene
 b-pinene
 b-pinene-derived
+b.e13.B1850C5.ne30_g16.icesm13_ihesp.eocene_03x.006
+b.e13.B1850C5.ne30_g16.icesm13_ihesp.eocene_06x.003
+b.e13.B1850C5.ne30_g16.icesm13_ihesp.PI.002
+b.e13.B1850C5.ne30_g16.icesm13_ihesp.PI_4xCO2.001
+b.e13.B1850C5.ne120_g16.icesm13_ihesp.eocene_03x.001
+b.e13.B1850C5.ne120_g16.icesm13_ihesp.PI.003
+b.e13.B1850C5.ne120_t12.icesm13_ihesp.PI_4xCO2.004
 b.e21.B1850.f09_g17.CMIP6-piControl.001_branch2
 b.e21.BHIST.f09_g17.CMIP6-historical.01
 b.e21.BHIST.f19_g17.CMIP6-historical-2deg.001
@@ -260,6 +269,7 @@ i.e.,
 I/A
 I-CIMS
 I_Adjusted
+iCESM1.3-HR
 IEPOX_None_Ammonium
 IEPOX_None_Sodium
 IIb
