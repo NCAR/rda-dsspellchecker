@@ -206,6 +206,7 @@ ERA5-Land
 ExB
 exp1
 exp2
+experiment/YYYYMMDDHH/
 expver=0001
 extSPCZ-A
 f09
@@ -231,6 +232,7 @@ glyoxal/H2O
 GMS-5
 GPM_3IMERGDF
 GPM_3IMERGHH
+Grell-Freitas
 grid/node-registration
 GridRad
 GridRad.org
@@ -465,6 +467,7 @@ PlioMIP1
 PlioMIP2
 plus4K
 PlusRCP85
+post_process/
 pre-Helene
 priori
 Prof.
