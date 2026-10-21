@@ -194,6 +194,7 @@ e.g.
 e.g.,
 EC-Earth-Veg
 ECC_0
+Edc_VEL
 EGDBE(A)
 EESI-MS
 egrr
@@ -483,6 +484,8 @@ radical_DOS
 radical_N/A
 radical_N/A_Isoprene
 radical_SOA
+RadxConvert
+RadxEvad
 README
 Reid500
 remapcon
@@ -664,3 +667,4 @@ xAER
 xarray
 Xarray
 Zarr
+Z-VAD
