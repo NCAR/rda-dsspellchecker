@@ -334,6 +334,7 @@ Meteor.
 METH-GPROF-adjusted
 Metsat-6
 Metsat-7
+MetSim
 MgSO4
 Migal
 Milli-Q
@@ -611,6 +612,7 @@ sulfate_SEQ-2
 Sulfoxide/Acetonitrile_Hydroxyl
 Sulfoxide/Acetonitrile/Hydrogen
 Sulfoxide/Acetonitrile/Methylene
+SUMMA-LENS
 surrogate/NOx/H2O2_Hydroxyl
 surrogate/NOx/H2O2/M-XYLENE_Hydroxyl
 surrogate/NOx_Hydroxyl
